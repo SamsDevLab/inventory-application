@@ -1,9 +1,8 @@
 // genres router
 const express = require("express");
 const router = express.Router();
+const genresController = require("../controllers/genres");
 
-router.get("/", () => {
-  console.log("You've reached the Genres page!");
-});
+router.get("/", genresController.getAllGenres);
 
 module.exports = router;

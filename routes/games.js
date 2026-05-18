@@ -1,9 +1,8 @@
 // games router
 const express = require("express");
 const router = express.Router();
+const gamesController = require("../controllers/games");
 
-router.get("/", () => {
-  console.log("You've reached the Games page");
-});
+router.get("/", gamesController.getAllGames);
 
 module.exports = router;

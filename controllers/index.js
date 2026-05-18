@@ -1,9 +1,8 @@
 // index controller
 const db = require("../db/queries");
 
-async function getHomepageData() {
-  const data = await db.getAllData();
-  res.render("index", { title: "Game Inventory Manager", data: data });
+async function getHomepageData(req, res) {
+  console.log("Retrieved all Homepage data");
 }
 
 module.exports = {

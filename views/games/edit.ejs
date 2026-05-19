@@ -1,0 +1,67 @@
+<!-- Edit Game View -->
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../partials/head") %>
+  <body>
+    <%- include("../partials/header") %>
+    <main>
+      <form class="game-form" action="/games/edit/1" method="POST">
+        <div class="game-title-container">
+          <label for="game">Game Title</label>
+          <input type="text" name="game" id="game" required />
+        </div>
+        <h3>Developer (select as many as needed)</h3>
+        <div class="selection-container">
+          <div>
+            <input type="checkbox" id="atmos" name="atmos" />
+            <label for="atmos">Atmos</label>
+          </div>
+          <div>
+            <input type="checkbox" id="nintendo" name="nintendo" />
+            <label for="nintendo">Nintendo</label>
+          </div>
+          <div>
+            <input type="checkbox" id="polytron" name="polytron" />
+            <label for="polytron">Polytron Corporation</label>
+          </div>
+          <div>
+            <input type="checkbox" id="rare" name="rare" />
+            <label for="rare">Rare</label>
+          </div>
+          <div>
+            <input type="checkbox" id="team-meat" name="team-meat" />
+            <label for="team-meat">Team Meat</label>
+          </div>
+        </div>
+        <h3>Genre (select as many as needed)</h3>
+        <div class="selection-container">
+          <div>
+            <input type="checkbox" id="action" name="action" />
+            <label for="action">Action</label>
+          </div>
+          <div>
+            <input type="checkbox" id="fps" name="fps" />
+            <label for="fps">First-Person Shooter</label>
+          </div>
+          <div>
+            <input type="checkbox" id="platformer" name="platformer" />
+            <label for="platformer">Platformer</label>
+          </div>
+          <div>
+            <input type="checkbox" id="puzzle" name="puzzle" />
+            <label for="puzzle">Puzzle</label>
+          </div>
+          <div>
+            <input type="checkbox" id="rpg" name="rpg" />
+            <label for="rpg">RPG</label>
+          </div>
+        </div>
+        <div class="view-button-container">
+          <a href="/games/">Go Back</a>
+          <button type="submit">Save Edits</button>
+        </div>
+      </form>
+    </main>
+    <%- include("../partials/footer") %>
+  </body>
+</html>

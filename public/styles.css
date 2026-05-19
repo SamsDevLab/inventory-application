@@ -107,6 +107,7 @@ main {
   gap: 0.5rem;
 }
 
+/* All Games */
 .card-container {
   display: flex;
   flex-direction: column;
@@ -119,6 +120,7 @@ main {
   background-color: beige;
 }
 
+/* Developers/Genres */
 .category-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

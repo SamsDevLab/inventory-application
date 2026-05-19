@@ -8,6 +8,7 @@ const developersRouter = require("./routes/developers");
 const genresRouter = require("./routes/genres");
 
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 

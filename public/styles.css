@@ -107,6 +107,17 @@ main {
   gap: 0.5rem;
 }
 
+.view-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-button-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 /* All Games */
 .card-container {
   display: flex;
@@ -118,6 +129,26 @@ main {
   min-height: 2rem;
   min-width: 50rem;
   background-color: beige;
+}
+
+/* Add Game */
+.game-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.game-title-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+}
+
+.selection-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  align-items: center;
 }
 
 /* Developers/Genres */

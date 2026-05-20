@@ -16,8 +16,21 @@ async function addGenreToDatabase(req, res) {
   res.redirect("/genres");
 }
 
+function renderEditForm(req, res) {
+  res.render("genres/edit", { title: "Edit Genre" });
+}
+
+async function addEditedGenreToDatabase(req, res) {
+  console.log(req.body);
+  console.log(req.params.id);
+  // add query from databse to replace values with edited dev
+  res.redirect("/genres");
+}
+
 module.exports = {
   getAllGenres,
   renderAddGenreForm,
   addGenreToDatabase,
+  renderEditForm,
+  addEditedGenreToDatabase,
 };

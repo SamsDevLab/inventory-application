@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../partials/head") %>
+  <body>
+    <%- include("../partials/header") %>
+    <main>
+      <form class="developer-form" action="/developers/edit/2" method="POST">
+        <div class="dev-title-container">
+          <label for="developer">Edit Developer</label>
+          <input type="text" name="developer" id="developer" />
+        </div>
+        <button type="text">Submit</button>
+      </form>
+    </main>
+    <%- include("../partials/footer") %>
+  </body>
+</html>

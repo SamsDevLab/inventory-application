@@ -6,7 +6,7 @@ async function getAllGames(req, res) {
 }
 
 function renderAddGameForm(req, res) {
-  res.render("games/new", { title: "Add New Game" });
+  res.render("games/add", { title: "Add New Game" });
 }
 
 async function addGameToDatabase(req, res) {

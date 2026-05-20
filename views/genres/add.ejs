@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../partials/head") %>
+  <body>
+    <%- include("../partials/header") %>
+    <main>
+      <form class="genre-form" action="/genres/add" method="POST">
+        <div class="genre-title-container">
+          <label for="genre">Add Genre</label>
+          <input type="text" name="genre" id="genre" />
+        </div>
+        <button type="text">Submit</button>
+      </form>
+    </main>
+    <%- include("../partials/footer") %>
+  </body>
+</html>

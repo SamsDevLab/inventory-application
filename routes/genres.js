@@ -23,4 +23,6 @@ router.post(
   genresController.addEditedGenreToDatabase,
 );
 
+router.post("/delete/:id", genresController.deleteGenre);
+
 module.exports = router;

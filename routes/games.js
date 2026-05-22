@@ -23,4 +23,6 @@ router.post(
   gamesController.addEditedGameToDatabase,
 );
 
+router.post("/delete/:id", gamesController.deleteGame);
+
 module.exports = router;

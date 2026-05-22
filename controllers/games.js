@@ -28,10 +28,17 @@ async function addEditedGameToDatabase(req, res) {
   res.redirect("/games/");
 }
 
+async function deleteGame(req, res) {
+  console.log(req.params.id);
+  // Create query that deletes this id from Games table
+  res.redirect("/games");
+}
+
 module.exports = {
   getAllGames,
   renderAddGameForm,
   addGameToDatabase,
   renderEditForm,
   addEditedGameToDatabase,
+  deleteGame,
 };

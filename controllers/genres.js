@@ -27,10 +27,17 @@ async function addEditedGenreToDatabase(req, res) {
   res.redirect("/genres");
 }
 
+async function deleteGenre(req, res) {
+  console.log(req.params.id);
+  // add query that deletes the row id from the database
+  res.redirect("/genres");
+}
+
 module.exports = {
   getAllGenres,
   renderAddGenreForm,
   addGenreToDatabase,
   renderEditForm,
   addEditedGenreToDatabase,
+  deleteGenre,
 };

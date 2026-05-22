@@ -27,10 +27,17 @@ async function addEditedDevToDatabase(req, res) {
   res.redirect("/developers");
 }
 
+async function deleteDeveloper(req, res) {
+  console.log(req.params.id);
+  // Create query to delete the developer row based on id
+  res.redirect("/developers");
+}
+
 module.exports = {
   getAllDevelopers,
   renderAddDeveloperForm,
   addDeveloperToDatabase,
   renderEditForm,
   addEditedDevToDatabase,
+  deleteDeveloper,
 };

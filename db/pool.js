@@ -3,7 +3,7 @@ const databaseUrl = process.env.DATABASE_URL;
 
 module.exports = new Pool({
   connectionString: `${databaseUrl}`,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  // ssl: {
+  //   rejectUnauthorized: true,
+  // },
 });

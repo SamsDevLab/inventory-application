@@ -14,8 +14,8 @@
         <div class="selection-container">
           <% developerRows.forEach(row => { %>
             <div>
-            <input type="checkbox" id="atmos" name="atmos" />
-            <label for="atmos">Atmos</label>
+            <input type="checkbox" id="<%= row.id %>" name="<%= row.developer %>" />
+            <label for="<%= row.id %>"><%= row.developer %></label>
           </div>
          <% }) %>
         </div>
@@ -23,8 +23,8 @@
         <div class="selection-container">
          <% genreRows.forEach(row => { %>
           <div>
-            <input type="checkbox" id="action" name="action" />
-            <label for="action">Action</label>
+            <input type="checkbox" id="<%= row.id %>" name="<%= row.genre %>" />
+            <label for="<%= row.id %>"><%= row.genre %></label>
           </div>
          <% }) %>
          </div>

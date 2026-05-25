@@ -2,16 +2,19 @@
 const db = require("../db/queries");
 
 async function getAllGames(req, res) {
-  try {
-    const result = await db.queryAllGames();
-    res.render("games/index", { title: "Games", rows: result.rows });
-  } catch (error) {
-    console.error(error);
-  }
+  const result = await db.queryAllGames();
+  res.render("games/index", { title: "Games", rows: result.rows });
 }
 
-function renderAddGameForm(req, res) {
-  res.render("games/add", { title: "Add New Game" });
+async function renderAddGameForm(req, res) {
+  const developersResult = await db.queryAllDevelopers();
+  const genresResult = await db.queryAllGenres();
+
+  res.render("games/add", {
+    title: "Add New Game",
+    developerRows: developersResult.rows,
+    genreRows: genresResult.rows,
+  });
 }
 
 async function addGameToDatabase(req, res) {

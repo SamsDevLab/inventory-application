@@ -16,4 +16,22 @@ async function queryAllGames() {
   }
 }
 
-module.exports = { queryAllGames };
+async function queryAllDevelopers() {
+  try {
+    const result = await pool.query(`SELECT * FROM developers`);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function queryAllGenres() {
+  try {
+    const result = await pool.query(`SELECT * FROM genres`);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.exports = { queryAllGames, queryAllDevelopers, queryAllGenres };

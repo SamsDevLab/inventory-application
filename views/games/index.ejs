@@ -14,6 +14,8 @@
           <% rows.forEach(row => { %>
             <div class="card">
             <h3><%= row.game %></h3>
+            <h3><%= row.developer %></h3>
+            <h3><%= row.genre %></h3>
             <a href="/games/edit/<%= row.id %>">Edit</a>
             <form action="/games/delete/<%= row.id %>" method="POST">
               <button>Delete</button>

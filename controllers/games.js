@@ -2,7 +2,12 @@
 const db = require("../db/queries");
 
 async function getAllGames(req, res) {
-  res.render("games/index", { title: "Games" });
+  try {
+    const result = await db.queryAllGames();
+    res.render("games/index", { title: "Games", rows: result.rows });
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function renderAddGameForm(req, res) {
@@ -11,6 +16,13 @@ function renderAddGameForm(req, res) {
 
 async function addGameToDatabase(req, res) {
   console.log(req.body);
+  /* for the queries think about:
+  – Does the req.body contain a developer/developers
+  - a genre/genres
+  – If so you'll have to INSERT INTO game_genres and game_developers as well with
+  this set of queries.
+  – If not, you'll just INSERT INTO the games table
+  */
   res.redirect("/games/");
 }
 

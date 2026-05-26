@@ -5,7 +5,7 @@ const { validateAddGame } = require("../middleware/validators");
 const { handleErrors } = require("../middleware/errors");
 const gamesController = require("../controllers/games");
 
-router.get("/", gamesController.getAllGames);
+router.get("/", gamesController.getCurrentGames);
 
 router.get("/add", gamesController.renderAddGameForm);
 router.post(

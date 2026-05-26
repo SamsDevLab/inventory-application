@@ -1,9 +1,42 @@
 // games controller
 const db = require("../db/queries");
 
-async function getAllGames(req, res) {
-  const result = await db.queryAllGames();
-  res.render("games/index", { title: "Games", rows: result.rows });
+async function getCurrentGames(req, res) {
+  const allGames = await db.queryCurrentGames();
+  const gameGenres = await db.queryCurrentGameGenres();
+  const gameDevelopers = await db.queryCurrentGameDevelopers();
+
+  const gamesWithFullData = [];
+
+  allGames.forEach((game) => {
+    let developers = [];
+    let genres = [];
+    let currentGame = { ...game, developers, genres };
+
+    gameDevelopers.forEach((developer) => {
+      if (developer.game_id === currentGame.id) {
+        developers.push(developer.developer);
+        currentGame = {
+          ...currentGame,
+        };
+      } else return;
+    });
+
+    gameGenres.forEach((genre) => {
+      if (genre.game_id === currentGame.id) {
+        genres.push(genre.genre);
+        currentGame = {
+          ...currentGame,
+        };
+      } else return;
+    });
+
+    gamesWithFullData.push(currentGame);
+  });
+
+  // console.log(gamesWithFullData);
+
+  res.render("games/index", { title: "Games", rows: gamesWithFullData });
 }
 
 async function renderAddGameForm(req, res) {
@@ -18,14 +51,21 @@ async function renderAddGameForm(req, res) {
 }
 
 async function addGameToDatabase(req, res) {
-  console.log(req.body);
-  /* for the queries think about:
-  – Does the req.body contain a developer/developers
-  - a genre/genres
-  – If so you'll have to INSERT INTO game_genres and game_developers as well with
-  this set of queries.
-  – If not, you'll just INSERT INTO the games table
-  */
+  const newGameTitle = req.body.game;
+  const developersIds = req.body.developers;
+  const genresIds = req.body.genres;
+
+  await db.addGameToGamesTable(newGameTitle);
+  const gameId = await db.queryGameId(newGameTitle);
+
+  for (const devId of developersIds) {
+    await db.addToGameDevelopersTable(gameId, devId);
+  }
+
+  for (const genreId of genresIds) {
+    await db.addToGameGenresTable(gameId, genreId);
+  }
+
   res.redirect("/games/");
 }
 
@@ -50,7 +90,7 @@ async function deleteGame(req, res) {
 }
 
 module.exports = {
-  getAllGames,
+  getCurrentGames,
   renderAddGameForm,
   addGameToDatabase,
   renderEditForm,

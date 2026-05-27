@@ -24,15 +24,15 @@ async function addGameToDatabase(req, res) {
   const developersIds = req.body.developers;
   const genresIds = req.body.genres;
 
-  await db.addGameToGamesTable(newGameTitle);
-  const gameId = await db.queryGameId(newGameTitle);
+  await gamesModel.addGameToGamesTable(newGameTitle);
+  const gameId = await gamesModel.queryGameId(newGameTitle);
 
   for (const devId of developersIds) {
-    await db.addToGameDevelopersTable(gameId, devId);
+    await gamesModel.addToGameDevelopersTable(gameId, devId);
   }
 
   for (const genreId of genresIds) {
-    await db.addToGameGenresTable(gameId, genreId);
+    await gamesModel.addToGameGenresTable(gameId, genreId);
   }
 
   res.redirect("/games/");

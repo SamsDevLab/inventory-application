@@ -20,4 +20,4 @@ async function queryAllGenres() {
   }
 }
 
-module.export = { queryGenresForCurrentGames, queryAllGenres };
+module.exports = { queryGenresForCurrentGames, queryAllGenres };

@@ -3,45 +3,10 @@
 const gamesModel = require("../models/games");
 
 async function getCurrentGames(req, res) {
-  // This will be the main fn that returns all games
-  // const games = gamesModel.getAllGamesWithDetails();
+  const gamesWithAllDetails = gamesModel.getAllGamesWithDetails();
+  console.log(gamesWithAllDetails);
 
-  // Commented out lines below this have already been refactored/migrated
-  // const allGames = await db.queryCurrentGames();
-  // const gameGenres = await db.queryCurrentGenres();
-  // const gameDevelopers = await db.queryCurrentGameDevelopers();
-
-  const gamesWithFullData = [];
-
-  allGames.forEach((game) => {
-    let developers = [];
-    let genres = [];
-    let currentGame = { ...game, developers, genres };
-
-    gameDevelopers.forEach((developer) => {
-      if (developer.game_id === currentGame.id) {
-        developers.push(developer.developer);
-        currentGame = {
-          ...currentGame,
-        };
-      } else return;
-    });
-
-    gameGenres.forEach((genre) => {
-      if (genre.game_id === currentGame.id) {
-        genres.push(genre.genre);
-        currentGame = {
-          ...currentGame,
-        };
-      } else return;
-    });
-
-    gamesWithFullData.push(currentGame);
-  });
-
-  console.log(gamesWithFullData);
-
-  res.render("games/index", { title: "Games", rows: gamesWithFullData });
+  res.render("games/index", { title: "Games", rows: gamesWithAllDetails });
 }
 
 async function renderAddGameForm(req, res) {

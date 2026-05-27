@@ -11,6 +11,36 @@ async function getAllGamesWithDetails() {
   const allGames = await queryCurrentGames();
   const gameGenres = await genreModel.queryGenresForCurrentGames();
   const gameDevelopers = await developerModel.queryDevelopersForCurrentGames();
+
+  const gamesWithFullData = [];
+
+  allGames.forEach((game) => {
+    let developers = [];
+    let genres = [];
+    let currentGame = { ...game, developers, genres };
+
+    gameDevelopers.forEach((developer) => {
+      if (developer.game_id === currentGame.id) {
+        developers.push(developer.developer);
+        currentGame = {
+          ...currentGame,
+        };
+      } else return;
+    });
+
+    gameGenres.forEach((genre) => {
+      if (genre.game_id === currentGame.id) {
+        genres.push(genre.genre);
+        currentGame = {
+          ...currentGame,
+        };
+      } else return;
+    });
+
+    gamesWithFullData.push(currentGame);
+  });
+
+  return gamesWithFullData;
 }
 
 module.exports = { getAllGamesWithDetails };

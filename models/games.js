@@ -53,7 +53,6 @@ async function addGameToGamesTable(newGameTitle) {
 
 async function queryGameId(gameTitle) {
   try {
-    console.log(gameTitle);
     const result = await pool.query(
       `SELECT games.id FROM games WHERE games.game = $1`,
       [gameTitle],
@@ -88,10 +87,24 @@ async function addToGameGenresTable(gameId, genreId) {
   }
 }
 
+async function addNewGameWithDetails(newGameTitle, developerIds, genreIds) {
+  await addGameToGamesTable(newGameTitle);
+  const gameId = await queryGameId(newGameTitle);
+
+  for (const developerId of developerIds) {
+    await addToGameDevelopersTable(gameId, developerId);
+  }
+
+  for (const genreId of genreIds) {
+    await addToGameGenresTable(gameId, genreId);
+  }
+}
+
 module.exports = {
   getAllGamesWithDetails,
   addGameToGamesTable,
   queryGameId,
   addToGameDevelopersTable,
   addToGameGenresTable,
+  addNewGameWithDetails,
 };

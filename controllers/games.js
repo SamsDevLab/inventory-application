@@ -1,5 +1,7 @@
 // games controller
 const gamesModel = require("../models/games");
+const developersModel = require("../models/developers");
+const genresModel = require("../models/genres");
 
 async function getCurrentGames(req, res) {
   const gamesWithAllDetails = await gamesModel.getAllGamesWithDetails();
@@ -7,8 +9,8 @@ async function getCurrentGames(req, res) {
 }
 
 async function renderAddGameForm(req, res) {
-  const developersResult = await db.queryAllDevelopers();
-  const genresResult = await db.queryAllGenres();
+  const developersResult = await developersModel.queryAllDevelopers();
+  const genresResult = await genresModel.queryAllGenres();
 
   res.render("games/add", {
     title: "Add New Game",

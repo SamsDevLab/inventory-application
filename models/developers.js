@@ -11,4 +11,13 @@ async function queryDevelopersForCurrentGames() {
   return developers.rows;
 }
 
-module.exports = { queryDevelopersForCurrentGames };
+async function queryAllDevelopers() {
+  try {
+    const result = await pool.query(`SELECT * FROM developers`);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.exports = { queryDevelopersForCurrentGames, queryAllDevelopers };

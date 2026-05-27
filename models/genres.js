@@ -11,4 +11,13 @@ async function queryGenresForCurrentGames() {
   return genres.rows;
 }
 
-module.export = { queryGenresForCurrentGames };
+async function queryAllGenres() {
+  try {
+    const result = await pool.query(`SELECT * FROM genres`);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.export = { queryGenresForCurrentGames, queryAllGenres };

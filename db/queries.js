@@ -2,51 +2,6 @@ const pool = require("./pool");
 
 // General rule: if it has been commented out it has already been migrated
 
-// async function queryCurrentGames() {
-//   const allGames = await pool.query(`SELECT * FROM games`);
-//   return allGames.rows;
-// }
-
-// async function queryCurrentGenres() {
-//   const genres = await pool.query(
-//     `SELECT game_id, genres.genre
-//         FROM games
-//           JOIN game_genres ON game_genres.game_id = games.id
-//           JOIN genres ON game_genres.genre_id = genres.id
-//     `,
-//   );
-//   return genres.rows;
-// }
-
-// async function queryCurrentDevelopers() {
-//   const developers = await pool.query(
-//     `SELECT game_id, developers.developer
-//         FROM games
-//           JOIN game_developers ON game_developers.game_id = games.id
-//           JOIN developers ON game_developers.developer_id = developers.id
-//     `,
-//   );
-//   return developers.rows;
-// }
-
-async function queryAllDevelopers() {
-  try {
-    const result = await pool.query(`SELECT * FROM developers`);
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function queryAllGenres() {
-  try {
-    const result = await pool.query(`SELECT * FROM genres`);
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 async function addGameToGamesTable(newGameTitle) {
   try {
     await pool.query(`INSERT INTO games (game) VALUES ($1)`, [newGameTitle]);
@@ -96,9 +51,9 @@ module.exports = {
   // queryAllGames,
   // queryCurrentGames,
   // queryCurrentGenres,
-  queryCurrentDevelopers,
-  queryAllDevelopers,
-  queryAllGenres,
+  // queryCurrentDevelopers,
+  // queryAllDevelopers,
+  // queryAllGenres,
   addGameToGamesTable,
   queryGameId,
   addToGameDevelopersTable,

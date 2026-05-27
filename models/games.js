@@ -9,8 +9,8 @@ async function queryCurrentGames() {
 
 async function getAllGamesWithDetails() {
   const allGames = await queryCurrentGames();
-  const gameGenres = await genreModel.queryCurrentGenres();
-  const gameDevelopers = await developerModel.queryCurrentDevelopers();
+  const gameGenres = await genreModel.queryGenresForCurrentGames();
+  const gameDevelopers = await developerModel.queryDevelopersForCurrentGames();
 }
 
 module.exports = { getAllGamesWithDetails };

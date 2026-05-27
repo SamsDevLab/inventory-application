@@ -1,6 +1,6 @@
 const pool = require("../db/pool");
 
-async function queryCurrentGenres() {
+async function queryGenresForCurrentGames() {
   const genres = await pool.query(
     `SELECT game_id, genres.genre
         FROM games
@@ -11,4 +11,4 @@ async function queryCurrentGenres() {
   return genres.rows;
 }
 
-module.export = { queryCurrentGenres };
+module.export = { queryGenresForCurrentGames };

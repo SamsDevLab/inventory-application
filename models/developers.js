@@ -1,6 +1,6 @@
 const pool = require("../db/pool");
 
-async function queryCurrentDevelopers() {
+async function queryDevelopersForCurrentGames() {
   const developers = await pool.query(
     `SELECT game_id, developers.developer
         FROM games
@@ -11,4 +11,4 @@ async function queryCurrentDevelopers() {
   return developers.rows;
 }
 
-module.exports = { queryCurrentDevelopers };
+module.exports = { queryDevelopersForCurrentGames };

@@ -100,6 +100,38 @@ async function addNewGameWithDetails(newGameTitle, developerIds, genreIds) {
   }
 }
 
+async function queryTitleByGameID(gameId) {
+  const result = await pool.query(
+    `SELECT * 
+        FROM games
+            WHERE games.id = $1
+    `,
+    [gameId],
+  );
+
+  const gameTitle = result.rows;
+  return gameTitle;
+}
+
+async function queryGameForEditing(gameId) {
+  const gameTitle = await queryTitleByGameID(gameId);
+  const gameDevelopers = await developerModel.queryDevelopersByGameId(gameId);
+  const gameGenres = await genreModel.queryGenreByGameId(gameId);
+
+  const allDevelopers = await developerModel.queryAllDevelopers();
+  const allGenres = await genreModel.queryAllGenres();
+
+  const gameEditingData = {
+    gameTitle,
+    gameDevelopers,
+    gameGenres,
+    allDevelopers,
+    allGenres,
+  };
+
+  return gameEditingData;
+}
+
 module.exports = {
   getAllGamesWithDetails,
   addGameToGamesTable,
@@ -107,4 +139,5 @@ module.exports = {
   addToGameDevelopersTable,
   addToGameGenresTable,
   addNewGameWithDetails,
+  queryGameForEditing,
 };

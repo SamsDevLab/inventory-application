@@ -14,8 +14,8 @@ async function renderAddGameForm(req, res) {
 
   res.render("games/add", {
     title: "Add New Game",
-    developerRows: developersResult.rows,
-    genreRows: genresResult.rows,
+    developerRows: developersResult,
+    genreRows: genresResult,
   });
 }
 
@@ -31,14 +31,11 @@ async function addGameToDatabase(req, res) {
 
 async function renderEditForm(req, res) {
   const gameId = req.params.id;
-  const allDevelopers = await developersModel.queryAllDevelopers();
-  const allGenres = await genresModel.queryAllGenres();
+  const gameData = await gamesModel.queryGameForEditing(gameId);
 
-  // const resultsForEditing = await gamesModel.queryGameForEditing(gameId);
   res.render("games/edit", {
     title: "Edit Game",
-    developers: allDevelopers,
-    genres: allGenres,
+    gameData: gameData,
   });
 }
 

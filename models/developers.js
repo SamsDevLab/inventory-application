@@ -22,7 +22,7 @@ async function queryAllDevelopers() {
 }
 
 async function queryDevelopersByGameId(gameId) {
-  const developers = pool.query(
+  const result = await pool.query(
     `SELECT *
         FROM developers
             JOIN game_developers ON developers.id = game_developers.developer_id
@@ -31,6 +31,7 @@ async function queryDevelopersByGameId(gameId) {
     [gameId],
   );
 
+  const developers = result.rows;
   return developers;
 }
 

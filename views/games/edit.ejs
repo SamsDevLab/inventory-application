@@ -8,23 +8,39 @@
       <form class="game-form" action="/games/edit/1" method="POST">
         <div class="game-title-container">
           <label for="game">Game Title</label>
-          <input type="text" name="game" id="game" required />
+          <input
+            type="text"
+            name="<%= gameData.gameTitle[0].id %>"
+            id="game"
+            value="<%= gameData.gameTitle[0].game %>"
+            required
+          />
         </div>
         <h3>Developer (select as many as needed)</h3>
         <div class="selection-container">
-          <% developers.forEach(dev => { %>
+          <% gameData.allDevelopers.forEach(developer => { %>
             <div>
-              <input type="checkbox" id="<%= dev.developer %>" name="<%= dev.id %>" />
-              <label for="<%= dev.developer %>"><%= dev.developer %></label>
+              <input type="checkbox" id="checkbox" name="<%= developer.id %>" 
+                <% gameData.gameDevelopers.forEach(gameDev => { %>
+                  <% if (gameDev.id === developer.id) { %>
+                      checked
+                <% } %>
+              <% }) %> />
+              <label for="checkbox"><%= developer.developer %></label>
             </div>
-          <% })%> 
+          <% }) %>
         </div>
         <h3>Genre (select as many as needed)</h3>
         <div class="selection-container">
-          <% genres.forEach(genre => { %>
+         <% gameData.allGenres.forEach(genre => { %>
             <div>
-              <input type="checkbox" id="<%= genre.genre %>" name="<%= genre.id %>" />
-              <label for="<%= genre.genre %>"><%= genre.genre %></label>
+              <input type="checkbox" id="checkbox" name="<%= genre.id %>" 
+                <% gameData.gameGenres.forEach(gameGenre => { %>
+                  <% if (gameGenre.id === genre.id) { %>
+                      checked
+                  <% } %>
+                <% }) %> />
+              <label for="checkbox"><%= genre.genre %></label>
             </div>
           <% }) %>
         </div>

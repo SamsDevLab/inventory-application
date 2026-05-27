@@ -22,8 +22,8 @@ async function queryAllGenres() {
 }
 
 async function queryGenreByGameId(gameId) {
-  const genres = pool.query(
-    `SELECT genre
+  const result = await pool.query(
+    `SELECT *
             FROM genres
                 JOIN game_genres ON genres.id = game_genres.genre_id
                 WHERE game_genres.game_id = $1
@@ -31,11 +31,8 @@ async function queryGenreByGameId(gameId) {
     [gameId],
   );
 
-  genres.then((result) => {
-    console.log(result.rows);
-  });
-
-  //   return genres;
+  const genres = result.rows;
+  return genres;
 }
 
 module.exports = {

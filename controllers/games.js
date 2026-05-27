@@ -1,10 +1,15 @@
 // games controller
-const db = require("../db/queries");
+// const db = require("../db/queries");
+const gamesModel = require("../models/games");
 
 async function getCurrentGames(req, res) {
-  const allGames = await db.queryCurrentGames();
-  const gameGenres = await db.queryCurrentGameGenres();
-  const gameDevelopers = await db.queryCurrentGameDevelopers();
+  // This will be the main fn that returns all games
+  // const games = gamesModel.getAllGamesWithDetails();
+
+  // Commented out lines below this have already been refactored/migrated
+  // const allGames = await db.queryCurrentGames();
+  // const gameGenres = await db.queryCurrentGenres();
+  // const gameDevelopers = await db.queryCurrentGameDevelopers();
 
   const gamesWithFullData = [];
 
@@ -34,7 +39,7 @@ async function getCurrentGames(req, res) {
     gamesWithFullData.push(currentGame);
   });
 
-  // console.log(gamesWithFullData);
+  console.log(gamesWithFullData);
 
   res.render("games/index", { title: "Games", rows: gamesWithFullData });
 }

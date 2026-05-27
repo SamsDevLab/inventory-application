@@ -1,31 +1,33 @@
 const pool = require("./pool");
 
-async function queryCurrentGames() {
-  const allGames = await pool.query(`SELECT * FROM games`);
-  return allGames.rows;
-}
+// General rule: if it has been commented out it has already been migrated
 
-async function queryCurrentGameGenres() {
-  const genres = await pool.query(
-    `SELECT game_id, genres.genre
-        FROM games
-          JOIN game_genres ON game_genres.game_id = games.id
-          JOIN genres ON game_genres.genre_id = genres.id
-    `,
-  );
-  return genres.rows;
-}
+// async function queryCurrentGames() {
+//   const allGames = await pool.query(`SELECT * FROM games`);
+//   return allGames.rows;
+// }
 
-async function queryCurrentGameDevelopers() {
-  const developers = await pool.query(
-    `SELECT game_id, developers.developer
-        FROM games
-          JOIN game_developers ON game_developers.game_id = games.id
-          JOIN developers ON game_developers.developer_id = developers.id
-    `,
-  );
-  return developers.rows;
-}
+// async function queryCurrentGenres() {
+//   const genres = await pool.query(
+//     `SELECT game_id, genres.genre
+//         FROM games
+//           JOIN game_genres ON game_genres.game_id = games.id
+//           JOIN genres ON game_genres.genre_id = genres.id
+//     `,
+//   );
+//   return genres.rows;
+// }
+
+// async function queryCurrentDevelopers() {
+//   const developers = await pool.query(
+//     `SELECT game_id, developers.developer
+//         FROM games
+//           JOIN game_developers ON game_developers.game_id = games.id
+//           JOIN developers ON game_developers.developer_id = developers.id
+//     `,
+//   );
+//   return developers.rows;
+// }
 
 async function queryAllDevelopers() {
   try {
@@ -92,9 +94,9 @@ async function addToGameGenresTable(gameId, genreId) {
 
 module.exports = {
   // queryAllGames,
-  queryCurrentGames,
-  queryCurrentGameGenres,
-  queryCurrentGameDevelopers,
+  // queryCurrentGames,
+  // queryCurrentGenres,
+  queryCurrentDevelopers,
   queryAllDevelopers,
   queryAllGenres,
   addGameToGamesTable,

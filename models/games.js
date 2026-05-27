@@ -1,3 +1,16 @@
 const pool = require("./pool");
 const genreModel = require("../models/genres");
 const developerModel = require("../models/developers");
+
+async function queryCurrentGames() {
+  const allGames = await pool.query(`SELECT * FROM games`);
+  return allGames.rows;
+}
+
+async function getAllGamesWithDetails() {
+  const allGames = await queryCurrentGames();
+  const gameGenres = await genreModel.queryCurrentGenres();
+  const gameDevelopers = await developerModel.queryCurrentDevelopers();
+}
+
+module.exports = { getAllGamesWithDetails };

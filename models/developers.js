@@ -14,10 +14,28 @@ async function queryDevelopersForCurrentGames() {
 async function queryAllDevelopers() {
   try {
     const result = await pool.query(`SELECT * FROM developers`);
-    return result;
+    const allDevelopers = result.rows;
+    return allDevelopers;
   } catch (error) {
     console.log(error);
   }
 }
 
-module.exports = { queryDevelopersForCurrentGames, queryAllDevelopers };
+async function queryDevelopersByGameId(gameId) {
+  const developers = pool.query(
+    `SELECT *
+        FROM developers
+            JOIN game_developers ON developers.id = game_developers.developer_id
+            WHERE game_developers.game_id = $1
+    `,
+    [gameId],
+  );
+
+  return developers;
+}
+
+module.exports = {
+  queryDevelopersForCurrentGames,
+  queryAllDevelopers,
+  queryDevelopersByGameId,
+};

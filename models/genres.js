@@ -14,10 +14,32 @@ async function queryGenresForCurrentGames() {
 async function queryAllGenres() {
   try {
     const result = await pool.query(`SELECT * FROM genres`);
-    return result;
+    const allGenres = result.rows;
+    return allGenres;
   } catch (error) {
     console.log(error);
   }
 }
 
-module.exports = { queryGenresForCurrentGames, queryAllGenres };
+async function queryGenreByGameId(gameId) {
+  const genres = pool.query(
+    `SELECT genre
+            FROM genres
+                JOIN game_genres ON genres.id = game_genres.genre_id
+                WHERE game_genres.game_id = $1
+        `,
+    [gameId],
+  );
+
+  genres.then((result) => {
+    console.log(result.rows);
+  });
+
+  //   return genres;
+}
+
+module.exports = {
+  queryGenresForCurrentGames,
+  queryAllGenres,
+  queryGenreByGameId,
+};

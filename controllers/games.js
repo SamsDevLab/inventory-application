@@ -30,9 +30,16 @@ async function addGameToDatabase(req, res) {
 }
 
 async function renderEditForm(req, res) {
-  // console.log(req.params.id);
-  // const queryResults = await db.queryGameById(req.params.id)
-  // res.render("games/edit", { title: "Edit Game" });
+  const gameId = req.params.id;
+  const allDevelopers = await developersModel.queryAllDevelopers();
+  const allGenres = await genresModel.queryAllGenres();
+
+  // const resultsForEditing = await gamesModel.queryGameForEditing(gameId);
+  res.render("games/edit", {
+    title: "Edit Game",
+    developers: allDevelopers,
+    genres: allGenres,
+  });
 }
 
 async function addEditedGameToDatabase(req, res) {

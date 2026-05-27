@@ -1,4 +1,4 @@
-const pool = require("./pool");
+const pool = require("../db/pool");
 const genreModel = require("../models/genres");
 const developerModel = require("../models/developers");
 

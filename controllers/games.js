@@ -1,5 +1,4 @@
 // games controller
-// const db = require("../db/queries");
 const gamesModel = require("../models/games");
 
 async function getCurrentGames(req, res) {

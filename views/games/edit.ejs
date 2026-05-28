@@ -6,12 +6,13 @@
     <%- include("../partials/header") %>
     <main>
       <form class="game-form" action="/games/edit/1" method="POST">
-        <div class="game-title-container">
-          <label for="game">Game Title</label>
+        <div class="game-title-container">          
+          <input type="hidden" name="gameId" value="<%= gameData.gameTitle[0].id%>">
+          <label for="<%= gameData.gameTitle[0].id %>">Game Title</label>
           <input
             type="text"
-            name="<%= gameData.gameTitle[0].id %>"
-            id="game"
+            name="game"
+            id="<%= gameData.gameTitle[0].id %>"
             value="<%= gameData.gameTitle[0].game %>"
             required
           />
@@ -20,13 +21,13 @@
         <div class="selection-container">
           <% gameData.allDevelopers.forEach(developer => { %>
             <div>
-              <input type="checkbox" id="checkbox" name="<%= developer.id %>" 
+              <input type="checkbox" id="<%= developer.id %>" value="<%= developer.id %>" name="developers[]" 
                 <% gameData.gameDevelopers.forEach(gameDev => { %>
                   <% if (gameDev.id === developer.id) { %>
                       checked
                 <% } %>
               <% }) %> />
-              <label for="checkbox"><%= developer.developer %></label>
+              <label for="<%= developer.id %>"><%= developer.developer %></label>
             </div>
           <% }) %>
         </div>
@@ -34,13 +35,13 @@
         <div class="selection-container">
          <% gameData.allGenres.forEach(genre => { %>
             <div>
-              <input type="checkbox" id="checkbox" name="<%= genre.id %>" 
+              <input type="checkbox" id="<%=genre.id %>" value="<%= genre.id %>" name="genres[]" 
                 <% gameData.gameGenres.forEach(gameGenre => { %>
                   <% if (gameGenre.id === genre.id) { %>
                       checked
                   <% } %>
                 <% }) %> />
-              <label for="checkbox"><%= genre.genre %></label>
+              <label for="<%=genre.id %>"><%= genre.genre %></label>
             </div>
           <% }) %>
         </div>

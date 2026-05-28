@@ -40,10 +40,9 @@ async function renderEditForm(req, res) {
 }
 
 async function addEditedGameToDatabase(req, res) {
-  console.log(req.params.id);
-  console.log(req.body);
-  // Use a query like this to overwrite existing data:
-  // await db.overWriteGameDetails
+  const gameDetails = req.body;
+  await gamesModel.editGameDetails(gameDetails);
+
   res.redirect("/games/");
 }
 

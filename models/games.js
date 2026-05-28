@@ -2,8 +2,12 @@ const pool = require("../db/pool");
 const genreModel = require("../models/genres");
 const developerModel = require("../models/developers");
 
+// ********************** //
+// **** Render Games **** //
+// ********************** //
+
 async function queryCurrentGames() {
-  const allGames = await pool.query(`SELECT * FROM games`);
+  const allGames = await pool.query(`SELECT * FROM games ORDER BY game`);
   return allGames.rows;
 }
 
@@ -42,6 +46,10 @@ async function getAllGamesWithDetails() {
 
   return gamesWithFullData;
 }
+
+// ******************* //
+// **** Add Games **** //
+// ******************* //
 
 async function addGameToGamesTable(newGameTitle) {
   try {
@@ -100,6 +108,10 @@ async function addNewGameWithDetails(newGameTitle, developerIds, genreIds) {
   }
 }
 
+// ********************** //
+// **** Edit Games ****** //
+// ********************** //
+
 async function queryTitleByGameID(gameId) {
   const result = await pool.query(
     `SELECT * 
@@ -132,6 +144,36 @@ async function queryGameForEditing(gameId) {
   return gameEditingData;
 }
 
+async function updateEditedGameInGamesTable(gameId, gameTitle) {
+  await pool.query(
+    `
+    UPDATE games
+        SET game = $1
+        WHERE games.id = $2
+      `,
+    [gameTitle, gameId],
+  );
+}
+
+async function editGameDetails(gameDetails) {
+  // console.log(gameDetails);
+
+  const gameId = gameDetails.gameId;
+  const gameTitle = gameDetails.game;
+  const developers = gameDetails.developers;
+  const genres = gameDetails.genres;
+
+  // console.log(gameId, gameTitle);
+
+  await updateEditedGameInGamesTable(gameId, gameTitle);
+
+  // 1. Target games table – update name of the game based on id
+  // 2. Target game_developers table - update each line with matching game_id with
+  //    new developer ids
+  // 3. Target game_genres table - update each line with matching game_id with
+  //    new genre ids
+}
+
 module.exports = {
   getAllGamesWithDetails,
   addGameToGamesTable,
@@ -140,4 +182,5 @@ module.exports = {
   addToGameGenresTable,
   addNewGameWithDetails,
   queryGameForEditing,
+  editGameDetails,
 };

@@ -273,8 +273,16 @@ async function updateGameGenresTable(gameId, genres) {
 async function editGameDetails(gameDetails) {
   const gameId = Number(gameDetails.gameId);
   const gameTitle = gameDetails.game;
-  const developers = gameDetails.developers;
-  const genres = gameDetails.genres;
+  let developers;
+  let genres;
+
+  if (gameDetails.developers === undefined) {
+    developers = [];
+  } else developers = gameDetails.developers;
+
+  if (gameDetails.genres === undefined) {
+    genres = [];
+  } else genres = gameDetails.genres;
 
   await updateGameInGamesTable(gameId, gameTitle);
   await updateGameDevelopersTable(gameId, developers);

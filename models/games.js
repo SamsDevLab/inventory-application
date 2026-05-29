@@ -173,7 +173,7 @@ async function queryCurrentDevelopersByGameId(gameId) {
   return devIdsArr;
 }
 
-async function addNewGameDevelopersRowsToDatabase(gameId, newDeveloperIds) {
+async function addGameDeveloperRelation(gameId, newDeveloperIds) {
   await pool.query(
     `INSERT INTO game_developers (game_id, developer_id)
         SELECT $1, * FROM UNNEST($2::int[])
@@ -194,7 +194,8 @@ async function updateGameDevelopersTable(gameId, developers) {
   const uniqueCurrentDeveloperIds =
     currentDeveloperIdsSet.difference(newDeveloperIdsSet);
 
-  await addNewGameDevelopersRowsToDatabase(gameId, uniqueNewDeveloperIds);
+  await addGameDeveloperRelation(gameId, uniqueNewDeveloperIds);
+  // await removeGameDeveloperRelation(gameId, uniqueNewDeveloperIds);
 }
 
 async function updateGameGenres(gameId, genres) {

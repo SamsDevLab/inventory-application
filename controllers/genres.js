@@ -25,9 +25,11 @@ async function renderEditForm(req, res) {
 }
 
 async function addEditedGenreToDatabase(req, res) {
-  console.log(req.body);
-  console.log(req.params.id);
-  // add query from databse to replace values with edited dev
+  const genreId = Number(req.params.id);
+  const genre = req.body.genre;
+
+  await genresModel.editGenre(genreId, genre);
+
   res.redirect("/genres");
 }
 

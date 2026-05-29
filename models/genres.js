@@ -64,10 +64,21 @@ async function queryGenreForEditing(genreId) {
   return result.rows[0];
 }
 
+async function editGenre(genreId, genre) {
+  await pool.query(
+    `UPDATE genres
+      SET genre = $2
+      WHERE genres.id = $1
+    `,
+    [genreId, genre],
+  );
+}
+
 module.exports = {
   queryGenresForCurrentGames,
   queryAllGenres,
   queryGenreByGameId,
   addGenre,
   queryGenreForEditing,
+  editGenre,
 };

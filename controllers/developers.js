@@ -17,14 +17,22 @@ async function addDeveloperToDatabase(req, res) {
   res.redirect("/developers");
 }
 
-function renderEditForm(req, res) {
-  res.render("developers/edit", { title: "Edit Developer" });
+async function renderEditForm(req, res) {
+  const developerId = req.params.id;
+  const developer = await developersModel.queryDeveloperForEditing(developerId);
+
+  res.render("developers/edit", {
+    title: "Edit Developer",
+    developer: developer,
+  });
 }
 
 async function addEditedDevToDatabase(req, res) {
-  console.log(req.body);
-  // console.log(req.params.id);
-  // add query from databse to replace values with edited dev
+  const developer = req.body.developer;
+  const developerId = req.params.id;
+
+  await developersModel.editDeveloper(developerId, developer);
+
   res.redirect("/developers");
 }
 

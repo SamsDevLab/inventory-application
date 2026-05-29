@@ -48,9 +48,38 @@ async function addDeveloper(newDeveloper) {
   );
 }
 
+/***********************/
+/*** Edit Developer ***/
+/*********************/
+
+async function queryDeveloperForEditing(developerId) {
+  const result = await pool.query(
+    `SELECT * FROM developers
+      WHERE developers.id = $1
+    `,
+    [developerId],
+  );
+
+  const [developer] = result.rows;
+
+  return developer;
+}
+
+async function editDeveloper(developerId, developer) {
+  await pool.query(
+    `UPDATE developers
+      SET developer = $2
+      WHERE developers.id = $1
+    `,
+    [developerId, developer],
+  );
+}
+
 module.exports = {
   queryDevelopersForCurrentGames,
   queryAllDevelopers,
   queryDevelopersByGameId,
   addDeveloper,
+  queryDeveloperForEditing,
+  editDeveloper,
 };

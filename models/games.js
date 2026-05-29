@@ -144,7 +144,7 @@ async function queryGameForEditing(gameId) {
   return gameEditingData;
 }
 
-async function updateEditedGameInGamesTable(gameId, gameTitle) {
+async function updateGameInGamesTable(gameId, gameTitle) {
   await pool.query(
     `
     UPDATE games
@@ -155,23 +155,61 @@ async function updateEditedGameInGamesTable(gameId, gameTitle) {
   );
 }
 
-async function editGameDetails(gameDetails) {
-  // console.log(gameDetails);
+async function queryCurrentDevelopersByGameId(gameId) {
+  const result = await pool.query(
+    ` SELECT *
+        FROM game_developers
+        WHERE game_developers.game_id = $1
+    `,
+    [gameId],
+  );
 
-  const gameId = gameDetails.gameId;
+  const devIdsArr = [];
+
+  result.rows.forEach((row) => {
+    devIdsArr.push(row.developer_id);
+  });
+
+  return devIdsArr;
+}
+
+async function addNewGameDevelopersRowsToDatabase(gameId, newDeveloperIds) {
+  await pool.query(
+    `INSERT INTO game_developers (game_id, developer_id)
+        SELECT $1, * FROM UNNEST($2::int[])
+    `,
+    [gameId, newDeveloperIds],
+  );
+}
+
+async function updateGameDevelopersTable(gameId, developers) {
+  const newDeveloperIdsSet = new Set(developers.map(Number));
+  const currentDeveloperIdsSet = new Set(
+    await queryCurrentDevelopersByGameId(gameId),
+  );
+
+  const uniqueNewDeveloperIds = Array.from(
+    newDeveloperIdsSet.difference(currentDeveloperIdsSet),
+  );
+  const uniqueCurrentDeveloperIds =
+    currentDeveloperIdsSet.difference(newDeveloperIdsSet);
+
+  await addNewGameDevelopersRowsToDatabase(gameId, uniqueNewDeveloperIds);
+}
+
+async function updateGameGenres(gameId, genres) {
+  console.log(genres);
+}
+
+async function editGameDetails(gameDetails) {
+  const gameId = Number(gameDetails.gameId);
   const gameTitle = gameDetails.game;
   const developers = gameDetails.developers;
   const genres = gameDetails.genres;
 
-  // console.log(gameId, gameTitle);
-
-  await updateEditedGameInGamesTable(gameId, gameTitle);
-
-  // 1. Target games table – update name of the game based on id
-  // 2. Target game_developers table - update each line with matching game_id with
-  //    new developer ids
-  // 3. Target game_genres table - update each line with matching game_id with
-  //    new genre ids
+  await updateGameInGamesTable(gameId, gameTitle);
+  await updateGameDevelopersTable(gameId, developers);
+  // await updateGameGenresTable(gameId, genres);
 }
 
 module.exports = {

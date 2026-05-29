@@ -11,41 +11,15 @@
           <a href="/genres/add">Add Genre</a>
         </section>
       <section class="category-container">
+        <% genres.forEach(genre => { %>
           <div class="category">
-            <h3>Future Genre Listing</h3>
-            <a href="/genres/edit/1">Edit</a>
-              <form action="/genres/delete/1" method="POST">
+            <h3><%= genre.genre %></h3>
+            <a href="/genres/edit/<%=genre.id %>">Edit</a>
+              <form action="/genres/delete/<%=genre.id %>" method="POST">
               <button>Delete</button>
              </form>
           </div>
-          <div class="category">
-            <h3>Future Genre Listing</h3>
-            <a href="/genres/edit/2">Edit</a>
-            <form action="/genres/delete/2" method="POST">
-              <button>Delete</button>
-            </form>
-          </div>
-          <div class="category">
-            <h3>Future Genre Listing</h3>
-            <a href="/genres/edit/3">Edit</a>
-            <form action="/genres/delete/3" method="POST">
-              <button>Delete</button>
-            </form>
-          </div>
-          <div class="category">
-            <h3>Future Genre Listing</h3>
-            <a href="/genres/edit/4">Edit</a>
-            <form action="/genres/delete/4" method="POST">
-              <button>Delete</button>
-            </form>
-          </div>
-          <div class="category">
-            <h3>Future Genre Listing</h3>
-            <a href="/genres/edit/5">Edit</a>
-            <form action="/genres/delete/5" method="POST">
-              <button>Delete</button>
-            </form>
-          </div>
+        <% }) %>
     </div>
   </main>
   <%- include("../partials/footer") %>

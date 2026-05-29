@@ -1,8 +1,10 @@
 // genres controller
+const genresModel = require("../models/genres");
 
 async function getAllGenres(req, res) {
-  // console.log("Retrieved all Genres");
-  res.render("genres/index");
+  const result = await genresModel.queryAllGenres();
+
+  res.render("genres/index", { genres: result });
 }
 
 function renderAddGenreForm(req, res) {

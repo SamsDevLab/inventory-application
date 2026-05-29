@@ -23,6 +23,6 @@ router.post(
   developersController.addEditedDevToDatabase,
 );
 
-router.post("/delete/:id", developersController.deleteDeveloper);
+router.post("/delete/:id", developersController.deleteDeveloperFromDatabase);
 
 module.exports = router;

@@ -75,6 +75,24 @@ async function editDeveloper(developerId, developer) {
   );
 }
 
+async function deleteDeveloper(developerId) {
+  await pool.query(
+    `DELETE FROM developers
+      WHERE developers.id = $1
+    `,
+    [developerId],
+  );
+}
+
+async function deleteDeveloperRelation(developerId) {
+  await pool.query(
+    `DELETE FROM game_developers
+      WHERE game_developers.developer_id = $1
+    `,
+    [developerId],
+  );
+}
+
 module.exports = {
   queryDevelopersForCurrentGames,
   queryAllDevelopers,
@@ -82,4 +100,6 @@ module.exports = {
   addDeveloper,
   queryDeveloperForEditing,
   editDeveloper,
+  deleteDeveloper,
+  deleteDeveloperRelation,
 };

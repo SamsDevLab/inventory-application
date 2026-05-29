@@ -1,8 +1,9 @@
 // developers controller
+const developersModel = require("../models/developers");
 
 async function getAllDevelopers(req, res) {
-  // console.log("Retrieved all Developers");
-  res.render("developers/index");
+  const allDevelopers = await developersModel.queryAllDevelopers();
+  res.render("developers/index", { developers: allDevelopers });
 }
 
 function renderAddDeveloperForm(req, res) {

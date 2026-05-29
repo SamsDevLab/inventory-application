@@ -11,41 +11,15 @@
           <a href="/developers/add">Add Developer</a>
         </section>
         <section class="category-container">
-          <div class="category">
-            <h3>Future Developer Listing</h3>
-            <a href="/developers/edit/1">Edit</a>
-             <form action="/developers/delete/1" method="POST">
+          <% developers.forEach(developer => { %> 
+            <div class="category">
+              <h3><%= developer.developer%></h3>
+              <a href="/developers/edit/<%= developer.id %>">Edit</a>
+              <form action="/developers/delete/<%= developer.id %>" method="POST">
               <button>Delete</button>
             </form>
           </div>
-          <div class="category">
-            <h3>Future Developer Listing</h3>
-            <a href="/developers/edit/2">Edit</a>
-             <form action="/developers/delete/2" method="POST">
-              <button>Delete</button>
-            </form>
-          </div>
-          <div class="category">
-            <h3>Future Developer Listing</h3>
-            <a href="/developers/edit/3">Edit</a>
-             <form action="/developers/delete/3" method="POST">
-              <button>Delete</button>
-            </form>
-          </div>
-          <div class="category">
-            <h3>Future Developer Listing</h3>
-            <a href="/developers/edit/4">Edit</a>
-             <form action="/developers/delete/4" method="POST">
-              <button>Delete</button>
-            </form>
-          </div>
-          <div class="category">
-            <h3>Future Developer Listing</h3>
-            <a href="/developers/edit/5">Edit</a>
-             <form action="/developers/delete/5" method="POST">
-              <button>Delete</button>
-            </form>
-          </div>
+         <% })%> 
         </section>
       </div>
     </main>

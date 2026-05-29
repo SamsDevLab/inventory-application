@@ -155,6 +155,10 @@ async function updateGameInGamesTable(gameId, gameTitle) {
   );
 }
 
+/*******************************/
+/*** Edit Game Developers *****/
+/*****************************/
+
 async function queryCurrentDevelopersByGameId(gameId) {
   const result = await pool.query(
     ` SELECT *
@@ -210,8 +214,52 @@ async function updateGameDevelopersTable(gameId, developers) {
   await removeGameDeveloperRelation(gameId, uniqueCurrentDeveloperIds);
 }
 
-async function updateGameGenres(gameId, genres) {
-  console.log(genres);
+/*******************************/
+/*** Edit Game Genres *********/
+/*****************************/
+
+async function queryCurrentGenresByGameId(gameId) {
+  const result = await pool.query(
+    ` SELECT genre_id FROM game_genres
+        WHERE game_genres.game_id = $1
+    `,
+    [gameId],
+  );
+
+  const genreIdsArr = [];
+
+  result.rows.forEach((genre) => {
+    genreIdsArr.push(genre.genre_id);
+  });
+
+  return genreIdsArr;
+}
+
+async function addGameGenreRelation(gameId, newGenreIds) {
+  await pool.query(
+    `INSERT INTO game_genres (game_id, genre_id)
+      SELECT $1, genre_id
+      FROM UNNEST($2::int[]) AS genre_id
+    `,
+    [gameId, newGenreIds],
+  );
+}
+
+async function removeGameGenreRelation(gameId, currentGenreIds) {}
+
+async function updateGameGenresTable(gameId, genres) {
+  const newGenreIdsSet = new Set(genres.map(Number));
+  const currentGenreIdsSet = new Set(await queryCurrentGenresByGameId(gameId));
+
+  const uniqueNewGenreIds = Array.from(
+    newGenreIdsSet.difference(currentGenreIdsSet),
+  );
+  const uniqueCurrentGenreIds = Array.from(
+    currentGenreIdsSet.difference(newGenreIdsSet),
+  );
+
+  await addGameGenreRelation(gameId, uniqueNewGenreIds);
+  // await removeGameGenreRelation(gameId, uniqueCurrentGenreIds);
 }
 
 async function editGameDetails(gameDetails) {
@@ -222,7 +270,7 @@ async function editGameDetails(gameDetails) {
 
   await updateGameInGamesTable(gameId, gameTitle);
   await updateGameDevelopersTable(gameId, developers);
-  // await updateGameGenresTable(gameId, genres);
+  await updateGameGenresTable(gameId, genres);
 }
 
 module.exports = {

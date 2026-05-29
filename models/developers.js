@@ -35,8 +35,22 @@ async function queryDevelopersByGameId(gameId) {
   return developers;
 }
 
+/**********************/
+/*** Add Developer ***/
+/********************/
+
+async function addDeveloper(newDeveloper) {
+  await pool.query(
+    `INSERT INTO developers (developer)
+        VALUES ($1)
+    `,
+    [newDeveloper],
+  );
+}
+
 module.exports = {
   queryDevelopersForCurrentGames,
   queryAllDevelopers,
   queryDevelopersByGameId,
+  addDeveloper,
 };

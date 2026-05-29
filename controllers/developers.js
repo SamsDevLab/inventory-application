@@ -11,8 +11,9 @@ function renderAddDeveloperForm(req, res) {
 }
 
 async function addDeveloperToDatabase(req, res) {
-  // console.log(req.body);
-  // add query to send dev to DB. ex: await db.addDeveloper
+  const newDeveloper = req.body.developer;
+  await developersModel.addDeveloper(newDeveloper);
+
   res.redirect("/developers");
 }
 

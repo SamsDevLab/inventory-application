@@ -48,9 +48,26 @@ async function addGenre(genre) {
   );
 }
 
+/*******************/
+/*** Edit Genre ***/
+/*****************/
+
+async function queryGenreForEditing(genreId) {
+  const result = await pool.query(
+    ` SELECT *
+        FROM genres
+        WHERE genres.id = $1
+    `,
+    [genreId],
+  );
+
+  return result.rows[0];
+}
+
 module.exports = {
   queryGenresForCurrentGames,
   queryAllGenres,
   queryGenreByGameId,
   addGenre,
+  queryGenreForEditing,
 };

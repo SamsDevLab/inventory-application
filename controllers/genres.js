@@ -17,8 +17,11 @@ async function addGenreToDatabase(req, res) {
   res.redirect("/genres");
 }
 
-function renderEditForm(req, res) {
-  res.render("genres/edit", { title: "Edit Genre" });
+async function renderEditForm(req, res) {
+  const genreId = req.params.id;
+  const genre = await genresModel.queryGenreForEditing(genreId);
+
+  res.render("genres/edit", { title: "Edit Genre", genre: genre });
 }
 
 async function addEditedGenreToDatabase(req, res) {

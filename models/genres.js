@@ -74,6 +74,28 @@ async function editGenre(genreId, genre) {
   );
 }
 
+/*********************/
+/*** Delete Genre ***/
+/*******************/
+
+async function deleteGenre(genreId) {
+  await pool.query(
+    `DELETE FROM genres
+      WHERE genres.id = $1
+    `,
+    [genreId],
+  );
+}
+
+async function deleteGenreRelation(genreId) {
+  await pool.query(
+    `DELETE FROM game_genres
+      WHERE game_genres.genre_id = $1
+    `,
+    [genreId],
+  );
+}
+
 module.exports = {
   queryGenresForCurrentGames,
   queryAllGenres,
@@ -81,4 +103,6 @@ module.exports = {
   addGenre,
   queryGenreForEditing,
   editGenre,
+  deleteGenre,
+  deleteGenreRelation,
 };

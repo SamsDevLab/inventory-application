@@ -33,9 +33,12 @@ async function addEditedGenreToDatabase(req, res) {
   res.redirect("/genres");
 }
 
-async function deleteGenre(req, res) {
-  console.log(req.params.id);
-  // add query that deletes the row id from the database
+async function deleteGenreFromDatabase(req, res) {
+  const genreId = Number(req.params.id);
+  await genresModel.deleteGenre(genreId);
+  await genresModel.deleteGenreRelation(genreId);
+
+  // deleteGenre
   res.redirect("/genres");
 }
 
@@ -45,5 +48,5 @@ module.exports = {
   addGenreToDatabase,
   renderEditForm,
   addEditedGenreToDatabase,
-  deleteGenre,
+  deleteGenreFromDatabase,
 };

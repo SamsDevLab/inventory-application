@@ -245,7 +245,15 @@ async function addGameGenreRelation(gameId, newGenreIds) {
   );
 }
 
-async function removeGameGenreRelation(gameId, currentGenreIds) {}
+async function removeGameGenreRelation(gameId, currentGenreIds) {
+  await pool.query(
+    `DELETE FROM game_genres
+      WHERE game_id = $1
+      AND genre_id = ANY($2::int[])
+    `,
+    [gameId, currentGenreIds],
+  );
+}
 
 async function updateGameGenresTable(gameId, genres) {
   const newGenreIdsSet = new Set(genres.map(Number));
@@ -259,7 +267,7 @@ async function updateGameGenresTable(gameId, genres) {
   );
 
   await addGameGenreRelation(gameId, uniqueNewGenreIds);
-  // await removeGameGenreRelation(gameId, uniqueCurrentGenreIds);
+  await removeGameGenreRelation(gameId, uniqueCurrentGenreIds);
 }
 
 async function editGameDetails(gameDetails) {

@@ -176,9 +176,20 @@ async function queryCurrentDevelopersByGameId(gameId) {
 async function addGameDeveloperRelation(gameId, newDeveloperIds) {
   await pool.query(
     `INSERT INTO game_developers (game_id, developer_id)
-        SELECT $1, * FROM UNNEST($2::int[])
+      SELECT $1, developer_id
+      FROM UNNEST($2::int[]) AS developer_id
     `,
     [gameId, newDeveloperIds],
+  );
+}
+
+async function removeGameDeveloperRelation(gameId, currentDeveloperIds) {
+  await pool.query(
+    `DELETE FROM game_developers
+      WHERE game_id = $1
+      AND developer_id = ANY($2::int[])
+  `,
+    [gameId, currentDeveloperIds],
   );
 }
 
@@ -191,11 +202,12 @@ async function updateGameDevelopersTable(gameId, developers) {
   const uniqueNewDeveloperIds = Array.from(
     newDeveloperIdsSet.difference(currentDeveloperIdsSet),
   );
-  const uniqueCurrentDeveloperIds =
-    currentDeveloperIdsSet.difference(newDeveloperIdsSet);
+  const uniqueCurrentDeveloperIds = Array.from(
+    currentDeveloperIdsSet.difference(newDeveloperIdsSet),
+  );
 
   await addGameDeveloperRelation(gameId, uniqueNewDeveloperIds);
-  // await removeGameDeveloperRelation(gameId, uniqueNewDeveloperIds);
+  await removeGameDeveloperRelation(gameId, uniqueCurrentDeveloperIds);
 }
 
 async function updateGameGenres(gameId, genres) {

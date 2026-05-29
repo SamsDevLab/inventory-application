@@ -289,6 +289,33 @@ async function editGameDetails(gameDetails) {
   await updateGameGenresTable(gameId, genres);
 }
 
+/**********************/
+/**** Delete Game ****/
+/********************/
+
+async function deleteGameFromGamesTable(gameId) {
+  await pool.query(`DELETE FROM games WHERE games.id = $1`, [gameId]);
+}
+
+async function deleteGameFromGameDevelopersTable(gameId) {
+  await pool.query(
+    `DELETE FROM game_developers WHERE game_developers.game_id = $1`,
+    [gameId],
+  );
+}
+
+async function deleteGameFromGameGenresTable(gameId) {
+  await pool.query(`DELETE FROM game_genres WHERE game_genres.game_id = $1`, [
+    gameId,
+  ]);
+}
+
+async function deleteGame(gameId) {
+  await deleteGameFromGamesTable(gameId);
+  await deleteGameFromGameDevelopersTable(gameId);
+  await deleteGameFromGameGenresTable(gameId);
+}
+
 module.exports = {
   getAllGamesWithDetails,
   addGameToGamesTable,
@@ -298,4 +325,5 @@ module.exports = {
   addNewGameWithDetails,
   queryGameForEditing,
   editGameDetails,
+  deleteGame,
 };

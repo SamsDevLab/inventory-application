@@ -3,7 +3,6 @@ const genresModel = require("../models/genres");
 
 async function getAllGenres(req, res) {
   const result = await genresModel.queryAllGenres();
-
   res.render("genres/index", { genres: result });
 }
 
@@ -12,8 +11,9 @@ function renderAddGenreForm(req, res) {
 }
 
 async function addGenreToDatabase(req, res) {
-  console.log(req.body);
-  // add query to send genre to DB. ex: await db.addGenre
+  const genre = req.body.genre;
+  await genresModel.addGenre(genre);
+
   res.redirect("/genres");
 }
 

@@ -35,8 +35,22 @@ async function queryGenreByGameId(gameId) {
   return genres;
 }
 
+/******************/
+/*** Add Genre ***/
+/****************/
+
+async function addGenre(genre) {
+  await pool.query(
+    `INSERT INTO genres (genre)
+      VALUES ($1)
+    `,
+    [genre],
+  );
+}
+
 module.exports = {
   queryGenresForCurrentGames,
   queryAllGenres,
   queryGenreByGameId,
+  addGenre,
 };

@@ -51,11 +51,11 @@ async function getAllGamesWithDetails() {
 // **** Add Games **** //
 // ******************* //
 
-async function addGameToGamesTable(newGameTitle, gameImage) {
+async function addGameToGamesTable(newGameTitle, gameImgUrl) {
   try {
-    await pool.query(`INSERT INTO games (game, image) VALUES ($1, $2)`, [
+    await pool.query(`INSERT INTO games (game, img_url) VALUES ($1, $2)`, [
       newGameTitle,
-      gameImage,
+      gameImgUrl,
     ]);
   } catch (error) {
     console.log(error);
@@ -100,11 +100,11 @@ async function addToGameGenresTable(gameId, genreId) {
 
 async function addNewGameWithDetails(
   newGameTitle,
-  gameImage,
+  gameImgUrl,
   developerIds,
   genreIds,
 ) {
-  await addGameToGamesTable(newGameTitle, gameImage);
+  await addGameToGamesTable(newGameTitle, gameImgUrl);
   const gameId = await queryGameId(newGameTitle);
 
   for (const developerId of developerIds) {
@@ -152,16 +152,16 @@ async function queryGameForEditing(gameId) {
   return gameEditingData;
 }
 
-async function updateGameInGamesTable(gameId, gameTitle, gameImage) {
+async function updateGameInGamesTable(gameId, gameTitle, gameImgUrl) {
   await pool.query(
     `
     UPDATE games
         SET 
           game = $2,
-          image = $3
+          img_url = $3
         WHERE games.id = $1
       `,
-    [gameId, gameTitle, gameImage],
+    [gameId, gameTitle, gameImgUrl],
   );
 }
 
@@ -283,7 +283,7 @@ async function updateGameGenresTable(gameId, genres) {
 async function editGameDetails(gameDetails) {
   const gameId = Number(gameDetails.gameId);
   const gameTitle = gameDetails.game;
-  const gameImage = gameDetails.gameImage;
+  const gameImgUrl = gameDetails.gameImgUrl;
 
   let developers;
   let genres;
@@ -296,7 +296,7 @@ async function editGameDetails(gameDetails) {
     genres = [];
   } else genres = gameDetails.genres;
 
-  await updateGameInGamesTable(gameId, gameTitle, gameImage);
+  await updateGameInGamesTable(gameId, gameTitle, gameImgUrl);
   await updateGameDevelopersTable(gameId, developers);
   await updateGameGenresTable(gameId, genres);
 }

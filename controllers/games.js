@@ -21,13 +21,13 @@ async function renderAddGameForm(req, res) {
 
 async function addGameToDatabase(req, res) {
   const newGameTitle = req.body.game;
-  const gameImage = req.body.gameImage;
+  const gameImgUrl = req.body.gameImgUrl;
   const developerIds = req.body.developers;
   const genreIds = req.body.genres;
 
   await gamesModel.addNewGameWithDetails(
     newGameTitle,
-    gameImage,
+    gameImgUrl,
     developerIds,
     genreIds,
   );

@@ -29,10 +29,11 @@ async function renderEditForm(req, res) {
 }
 
 async function addEditedDevToDatabase(req, res) {
-  const developer = req.body.developer;
   const developerId = req.params.id;
+  const developer = req.body.developer;
+  const developerImgUrl = req.body.developerImgUrl;
 
-  await developersModel.editDeveloper(developerId, developer);
+  await developersModel.editDeveloper(developerId, developer, developerImgUrl);
 
   res.redirect("/developers");
 }

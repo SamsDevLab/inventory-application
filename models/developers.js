@@ -69,13 +69,15 @@ async function queryDeveloperForEditing(developerId) {
   return developer;
 }
 
-async function editDeveloper(developerId, developer) {
+async function editDeveloper(developerId, developer, developerImgUrl) {
   await pool.query(
     `UPDATE developers
-      SET developer = $2
+      SET 
+      developer = $2,
+      img_url = $3
       WHERE developers.id = $1
     `,
-    [developerId, developer],
+    [developerId, developer, developerImgUrl],
   );
 }
 

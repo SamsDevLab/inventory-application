@@ -152,14 +152,16 @@ async function queryGameForEditing(gameId) {
   return gameEditingData;
 }
 
-async function updateGameInGamesTable(gameId, gameTitle) {
+async function updateGameInGamesTable(gameId, gameTitle, gameImage) {
   await pool.query(
     `
     UPDATE games
-        SET game = $1
-        WHERE games.id = $2
+        SET 
+          game = $2,
+          image = $3
+        WHERE games.id = $1
       `,
-    [gameTitle, gameId],
+    [gameId, gameTitle, gameImage],
   );
 }
 
@@ -281,6 +283,8 @@ async function updateGameGenresTable(gameId, genres) {
 async function editGameDetails(gameDetails) {
   const gameId = Number(gameDetails.gameId);
   const gameTitle = gameDetails.game;
+  const gameImage = gameDetails.gameImage;
+
   let developers;
   let genres;
 
@@ -292,7 +296,7 @@ async function editGameDetails(gameDetails) {
     genres = [];
   } else genres = gameDetails.genres;
 
-  await updateGameInGamesTable(gameId, gameTitle);
+  await updateGameInGamesTable(gameId, gameTitle, gameImage);
   await updateGameDevelopersTable(gameId, developers);
   await updateGameGenresTable(gameId, genres);
 }

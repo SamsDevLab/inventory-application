@@ -5,7 +5,7 @@
   <body>
     <%- include("../partials/header") %>
     <main>
-      <form class="game-form" action="/games/edit/1" method="POST">
+      <form class="game-form" action="/games/edit/<%= gameData.gameTitle[0].id %>" method="POST">
         <div class="game-title-container">          
           <input type="hidden" name="gameId" value="<%= gameData.gameTitle[0].id%>">
           <label for="<%= gameData.gameTitle[0].id %>">Game Title</label>
@@ -16,6 +16,10 @@
             value="<%= gameData.gameTitle[0].game %>"
             required
           />
+        <div class="game-image-container">
+          <label for="game-image">Game Image Link</label>
+          <input type="url" name="gameImage" id="game-image" value="<%= gameData.gameTitle[0].image %>">
+        </div>
         </div>
         <h3>Developer (select as many as needed)</h3>
         <div class="selection-container">

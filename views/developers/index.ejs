@@ -14,6 +14,7 @@
           <% developers.forEach(developer => { %> 
             <div class="category">
               <h3><%= developer.developer%></h3>
+              <img src="<%= developer.img_url %>" alt="<%= developer.developer %> image">
               <a href="/developers/edit/<%= developer.id %>">Edit</a>
               <form action="/developers/delete/<%= developer.id %>" method="POST">
               <button>Delete</button>

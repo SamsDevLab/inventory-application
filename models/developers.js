@@ -43,12 +43,12 @@ async function queryDevelopersByGameId(gameId) {
 /*** Add Developer ***/
 /********************/
 
-async function addDeveloper(newDeveloper) {
+async function addDeveloper(newDeveloper, developerImgUrl) {
   await pool.query(
-    `INSERT INTO developers (developer)
-        VALUES ($1)
+    `INSERT INTO developers (developer, img_url)
+        VALUES ($1, $2)
     `,
-    [newDeveloper],
+    [newDeveloper, developerImgUrl],
   );
 }
 

@@ -12,7 +12,8 @@ function renderAddDeveloperForm(req, res) {
 
 async function addDeveloperToDatabase(req, res) {
   const newDeveloper = req.body.developer;
-  await developersModel.addDeveloper(newDeveloper);
+  const developerImgUrl = req.body.developerImgUrl;
+  await developersModel.addDeveloper(newDeveloper, developerImgUrl);
 
   res.redirect("/developers");
 }

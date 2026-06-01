@@ -51,9 +51,12 @@ async function getAllGamesWithDetails() {
 // **** Add Games **** //
 // ******************* //
 
-async function addGameToGamesTable(newGameTitle) {
+async function addGameToGamesTable(newGameTitle, gameImage) {
   try {
-    await pool.query(`INSERT INTO games (game) VALUES ($1)`, [newGameTitle]);
+    await pool.query(`INSERT INTO games (game, image) VALUES ($1, $2)`, [
+      newGameTitle,
+      gameImage,
+    ]);
   } catch (error) {
     console.log(error);
   }
@@ -95,8 +98,13 @@ async function addToGameGenresTable(gameId, genreId) {
   }
 }
 
-async function addNewGameWithDetails(newGameTitle, developerIds, genreIds) {
-  await addGameToGamesTable(newGameTitle);
+async function addNewGameWithDetails(
+  newGameTitle,
+  gameImage,
+  developerIds,
+  genreIds,
+) {
+  await addGameToGamesTable(newGameTitle, gameImage);
   const gameId = await queryGameId(newGameTitle);
 
   for (const developerId of developerIds) {

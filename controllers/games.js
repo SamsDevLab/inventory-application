@@ -21,10 +21,16 @@ async function renderAddGameForm(req, res) {
 
 async function addGameToDatabase(req, res) {
   const newGameTitle = req.body.game;
+  const gameImage = req.body.gameImage;
   const developerIds = req.body.developers;
   const genreIds = req.body.genres;
 
-  await gamesModel.addNewGameWithDetails(newGameTitle, developerIds, genreIds);
+  await gamesModel.addNewGameWithDetails(
+    newGameTitle,
+    gameImage,
+    developerIds,
+    genreIds,
+  );
 
   res.redirect("/games/");
 }

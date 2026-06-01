@@ -14,6 +14,7 @@
           <% rows.forEach(row => { %>
             <div class="card">
             <h3><%= row.game %></h3>
+            <img src="<%= row.image %>" alt="<%= row.game %> image">
             <% row.developers.forEach(developer => { %>
               <h3><%= developer %></h3>
             <% }) %>

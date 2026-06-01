@@ -12,12 +12,15 @@
         </section>
         <section class="card-container">
           <% rows.forEach(row => { %>
-            <div class="card">
-            <h3><%= row.game %></h3>
-            <img src="<%= row.img_url %>" alt="<%= row.game %> image">
-            <% row.developers.forEach(developer => { %>
-              <h3><%= developer %></h3>
-            <% }) %>
+          <div class="card">
+              <div class="card-header-and-image">
+                <h3><%= row.game %></h3>
+                <img src="<%= row.img_url %>" alt="<%= row.game %> image">
+              </div>
+              <div class="details-container">
+                <% row.developers.forEach(developer => { %>
+                <h3><%= developer %></h3>
+              <% }) %>
             <% row.genres.forEach(genre => { %>
               <h3><%= genre %></h3>
             <% }) %>
@@ -25,6 +28,7 @@
             <form action="/games/delete/<%= row.id %>" method="POST">
               <button>Delete</button>
             </form>
+          </div>
           </div>
           <% })%>
         </section>

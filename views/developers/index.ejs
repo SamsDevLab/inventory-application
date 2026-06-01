@@ -10,9 +10,9 @@
           <h2>Developers</h2>
           <a href="/developers/add">Add Developer</a>
         </section>
-        <section class="category-container">
+        <section class="card-container">
           <% developers.forEach(developer => { %> 
-            <div class="category">
+            <div class="card">
               <h3><%= developer.developer%></h3>
               <img src="<%= developer.img_url %>" alt="<%= developer.developer %> image">
               <a href="/developers/edit/<%= developer.id %>">Edit</a>

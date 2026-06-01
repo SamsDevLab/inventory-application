@@ -67,7 +67,7 @@ nav > ul {
 
 a {
   text-decoration: none;
-  color: indigo;
+  color: #e8e9ed;
 }
 
 a:hover {
@@ -81,7 +81,7 @@ h1 {
 /**************/
 /* Body/Main */
 body {
-  background-color: orange;
+  background-color: #0b0d12;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -98,6 +98,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  min-width: 60%;
 }
 
 .featured-section,
@@ -118,17 +119,27 @@ main {
   gap: 1rem;
 }
 
-/* All Games */
+/* All Cards (Games, Developers, Genres */
 .card-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
 }
 
+img {
+  max-height: 10rem;
+  min-height: 10rem;
+}
+
 .card {
-  min-height: 2rem;
-  min-width: 50rem;
-  background-color: beige;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 2rem;
+  background-color: #1b2336;
+  border: 2px solid #2f3a56;
+  color: #e8e9ed;
+  padding: 1rem;
 }
 
 /* Add Game */
@@ -153,17 +164,6 @@ main {
 }
 
 /* Developers | Genres*/
-.category-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-}
-
-.category {
-  min-height: 3rem;
-  min-width: 5rem;
-  background-color: beige;
-}
 
 .developer-form,
 .genre-form {

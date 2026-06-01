@@ -10,9 +10,9 @@
           <h2>Genres</h2>
           <a href="/genres/add">Add Genre</a>
         </section>
-      <section class="category-container">
+      <section class="card-container">
         <% genres.forEach(genre => { %>
-          <div class="category">
+          <div class="card">
             <h3><%= genre.genre %></h3>
             <a href="/genres/edit/<%=genre.id %>">Edit</a>
               <form action="/genres/delete/<%=genre.id %>" method="POST">

@@ -13,7 +13,11 @@ async function queryDevelopersForCurrentGames() {
 
 async function queryAllDevelopers() {
   try {
-    const result = await pool.query(`SELECT * FROM developers`);
+    const result = await pool.query(
+      `SELECT * FROM developers 
+        ORDER BY developers.developer 
+      `,
+    );
     const allDevelopers = result.rows;
     return allDevelopers;
   } catch (error) {

@@ -13,7 +13,11 @@ async function queryGenresForCurrentGames() {
 
 async function queryAllGenres() {
   try {
-    const result = await pool.query(`SELECT * FROM genres`);
+    const result = await pool.query(
+      `SELECT * FROM genres
+        ORDER BY genres.genre
+      `,
+    );
     const allGenres = result.rows;
     return allGenres;
   } catch (error) {

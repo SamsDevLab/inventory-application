@@ -79,6 +79,7 @@ h1 {
   font-size: 2rem;
 }
 
+h2,
 h3 {
   color: #e8e9ed;
 }
@@ -165,6 +166,10 @@ img {
   background-image: url("./images/joystick.svg");
   background-repeat: no-repeat;
   background-position: center;
+  align-items: center;
+  min-height: 10rem;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
 .details-container {

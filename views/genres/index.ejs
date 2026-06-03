@@ -14,10 +14,12 @@
         <% genres.forEach(genre => { %>
           <div class="genre-card">
             <h3><%= genre.genre %></h3>
+            <div class="edit-and-delete-container">
             <a href="/genres/edit/<%=genre.id %>">Edit</a>
               <form action="/genres/delete/<%=genre.id %>" method="POST">
               <button>Delete</button>
              </form>
+            </div>
           </div>
         <% }) %>
     </div>

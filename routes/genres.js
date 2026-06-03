@@ -25,4 +25,6 @@ router.post(
 
 router.post("/delete/:id", genresController.deleteGenreFromDatabase);
 
+router.get("/filter-games/:id", genresController.filterGamesByGenre);
+
 module.exports = router;

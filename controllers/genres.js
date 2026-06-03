@@ -42,6 +42,13 @@ async function deleteGenreFromDatabase(req, res) {
   res.redirect("/genres");
 }
 
+async function filterGamesByGenre(req, res) {
+  const genreId = Number(req.params.id);
+  const games = await genresModel.filterByGenre(genreId);
+
+  res.render("games/index", { title: "Games by Developer", rows: games });
+}
+
 module.exports = {
   getAllGenres,
   renderAddGenreForm,
@@ -49,4 +56,5 @@ module.exports = {
   renderEditForm,
   addEditedGenreToDatabase,
   deleteGenreFromDatabase,
+  filterGamesByGenre,
 };

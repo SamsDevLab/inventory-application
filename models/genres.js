@@ -89,6 +89,28 @@ async function deleteGenreRelation(genreId) {
   );
 }
 
+/******************************/
+/**** Filter By Genre ********/
+/****************************/
+
+async function filterByGenre(genreId) {
+  const result = await pool.query(
+    `
+    SELECT  games.id, game, games.img_url, ARRAY_AGG(DISTINCT developer) AS developers, ARRAY_AGG(DISTINCT genre) AS genres
+      FROM developers
+        JOIN game_developers ON game_developers.developer_id = developers.id
+        JOIN games ON game_developers.game_id = games.id
+        JOIN game_genres ON games.id = game_genres.game_id
+        JOIN genres ON game_genres.genre_id = genres.id
+          WHERE genres.id = $1
+          GROUP BY games.id
+    `,
+    [genreId],
+  );
+
+  return result.rows;
+}
+
 module.exports = {
   queryAllGenres,
   queryGenreByGameId,
@@ -97,4 +119,5 @@ module.exports = {
   editGenre,
   deleteGenre,
   deleteGenreRelation,
+  filterByGenre,
 };

@@ -13,7 +13,7 @@
       <section class="card-container">
         <% genres.forEach(genre => { %>
           <div class="genre-card">
-            <h3><%= genre.genre %></h3>
+            <h3><a href="/genres/filter-games/<%= genre.id %>"><%= genre.genre %></h3>
             <div class="edit-and-delete-container">
             <a href="/genres/edit/<%=genre.id %>">Edit</a>
               <form action="/genres/delete/<%=genre.id %>" method="POST">

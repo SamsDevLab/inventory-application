@@ -180,13 +180,13 @@ img {
 
 .genres-container {
   display: flex;
-  gap: 0.1rem;
+  flex-wrap: wrap;
+  gap: 0.2rem;
 }
 
 .genres-container p {
   background-color: #2f3a56;
   padding: 0.3rem;
-  margin-right: 0.2rem;
   border-radius: 0.2rem;
 }
 

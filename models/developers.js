@@ -103,6 +103,7 @@ async function filterByDeveloper(developerId) {
         JOIN genres ON game_genres.genre_id = genres.id
           WHERE developers.id = $1
           GROUP BY games.id
+            ORDER BY game
     `,
     [developerId],
   );

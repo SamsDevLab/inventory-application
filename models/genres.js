@@ -104,6 +104,7 @@ async function filterByGenre(genreId) {
         JOIN genres ON game_genres.genre_id = genres.id
           WHERE genres.id = $1
           GROUP BY games.id
+            ORDER BY game
     `,
     [genreId],
   );

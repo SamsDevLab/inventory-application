@@ -6,45 +6,21 @@ const developerModel = require("../models/developers");
 // **** Render Games **** //
 // ********************** //
 
-async function queryCurrentGames() {
-  const allGames = await pool.query(`SELECT * FROM games ORDER BY game`);
-  return allGames.rows;
-}
+async function queryAllGamesWithDetails() {
+  const result = await pool.query(
+    `
+    SELECT  games.id, game, games.img_url, ARRAY_AGG(DISTINCT developer) AS developers, ARRAY_AGG(DISTINCT genre) AS genres
+      FROM developers
+        JOIN game_developers ON game_developers.developer_id = developers.id
+        JOIN games ON game_developers.game_id = games.id
+        JOIN game_genres ON games.id = game_genres.game_id
+        JOIN genres ON game_genres.genre_id = genres.id
+          GROUP BY games.id
+          ORDER BY game
+    `,
+  );
 
-async function getAllGamesWithDetails() {
-  const allGames = await queryCurrentGames();
-  const gameGenres = await genreModel.queryGenresForCurrentGames();
-  const gameDevelopers = await developerModel.queryDevelopersForCurrentGames();
-
-  const gamesWithFullData = [];
-
-  allGames.forEach((game) => {
-    let developers = [];
-    let genres = [];
-    let currentGame = { ...game, developers, genres };
-
-    gameDevelopers.forEach((developer) => {
-      if (developer.game_id === currentGame.id) {
-        developers.push(developer.developer);
-        currentGame = {
-          ...currentGame,
-        };
-      } else return;
-    });
-
-    gameGenres.forEach((genre) => {
-      if (genre.game_id === currentGame.id) {
-        genres.push(genre.genre);
-        currentGame = {
-          ...currentGame,
-        };
-      } else return;
-    });
-
-    gamesWithFullData.push(currentGame);
-  });
-
-  return gamesWithFullData;
+  return result.rows;
 }
 
 // ******************* //
@@ -329,7 +305,7 @@ async function deleteGame(gameId) {
 }
 
 module.exports = {
-  getAllGamesWithDetails,
+  queryAllGamesWithDetails,
   addGameToGamesTable,
   queryGameId,
   addToGameDevelopersTable,

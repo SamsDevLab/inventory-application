@@ -4,7 +4,7 @@ const developersModel = require("../models/developers");
 const genresModel = require("../models/genres");
 
 async function getCurrentGames(req, res) {
-  const gamesWithAllDetails = await gamesModel.getAllGamesWithDetails();
+  const gamesWithAllDetails = await gamesModel.queryAllGamesWithDetails();
   res.render("games/index", { title: "Games", rows: gamesWithAllDetails });
 }
 

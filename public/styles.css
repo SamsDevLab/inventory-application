@@ -208,6 +208,7 @@ img {
   display: flex;
   flex-direction: column;
   max-width: 50%;
+  color: #e8e9ed;
 }
 
 .selection-container {

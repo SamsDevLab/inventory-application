@@ -46,6 +46,13 @@ async function deleteDeveloperFromDatabase(req, res) {
   res.redirect("/developers");
 }
 
+async function filterGamesByDeveloper(req, res) {
+  const developerId = Number(req.params.id);
+  const games = await developersModel.filterByDeveloper(developerId);
+
+  res.render("games/index", { title: "Games by Developer", rows: games });
+}
+
 module.exports = {
   getAllDevelopers,
   renderAddDeveloperForm,
@@ -53,4 +60,5 @@ module.exports = {
   renderEditForm,
   addEditedDevToDatabase,
   deleteDeveloperFromDatabase,
+  filterGamesByDeveloper,
 };

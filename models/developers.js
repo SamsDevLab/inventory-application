@@ -99,6 +99,28 @@ async function deleteDeveloperRelation(developerId) {
   );
 }
 
+/***********************/
+/**** Filter Views ****/
+/*********************/
+
+async function filterByDeveloper(developerId) {
+  const result = await pool.query(
+    `
+    SELECT  games.id, game, games.img_url, ARRAY_AGG(DISTINCT developer) AS developers, ARRAY_AGG(DISTINCT genre) AS genres
+      FROM developers
+        JOIN game_developers ON game_developers.developer_id = developers.id
+        JOIN games ON game_developers.game_id = games.id
+        JOIN game_genres ON games.id = game_genres.game_id
+        JOIN genres ON game_genres.genre_id = genres.id
+          WHERE developers.id = $1
+          GROUP BY games.id
+    `,
+    [developerId],
+  );
+
+  return result.rows;
+}
+
 module.exports = {
   queryDevelopersForCurrentGames,
   queryAllDevelopers,
@@ -108,4 +130,5 @@ module.exports = {
   editDeveloper,
   deleteDeveloper,
   deleteDeveloperRelation,
+  filterByDeveloper,
 };

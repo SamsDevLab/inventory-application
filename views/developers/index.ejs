@@ -13,12 +13,16 @@
         <section class="card-container">
           <% developers.forEach(developer => { %> 
             <div class="developer-card">
-              <h3><%= developer.developer%></h3>
-              <img src="<%= developer.img_url %>" alt="<%= developer.developer %> image">
+              <h3>
+                <a href="/developers/filter-games/<%= developer.id %>"><%= developer.developer%></a>
+              </h3>
+              <a href="/developers/filter-games/<%= developer.id %>">
+                <img src="<%= developer.img_url %>" alt="<%= developer.developer %> image">
+              </a>
               <div class="edit-and-delete-container">
-              <a href="/developers/edit/<%= developer.id %>">Edit</a>
-              <form action="/developers/delete/<%= developer.id %>" method="POST">
-              <button>Delete</button>
+                <a href="/developers/edit/<%= developer.id %>">Edit</a>
+                <form action="/developers/delete/<%= developer.id %>" method="POST">
+                <button>Delete</button>
               </div>
             </form>
           </div>

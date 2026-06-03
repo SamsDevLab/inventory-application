@@ -25,4 +25,6 @@ router.post(
 
 router.post("/delete/:id", developersController.deleteDeveloperFromDatabase);
 
+router.get("/filter-games/:id", developersController.filterGamesByDeveloper);
+
 module.exports = router;

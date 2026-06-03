@@ -12,7 +12,7 @@
         </section>
       <section class="card-container">
         <% genres.forEach(genre => { %>
-          <div class="card">
+          <div class="genre-card">
             <h3><%= genre.genre %></h3>
             <a href="/genres/edit/<%=genre.id %>">Edit</a>
               <form action="/genres/delete/<%=genre.id %>" method="POST">

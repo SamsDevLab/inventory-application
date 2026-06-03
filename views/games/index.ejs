@@ -12,7 +12,7 @@
         </section>
         <section class="card-container">
           <% rows.forEach(row => { %>
-          <div class="card">
+          <div class="game-card">
               <div class="card-header-and-image">
                 <h3><%= row.game %></h3>
                 <img src="<%= row.img_url %>" alt="<%= row.game %> image">
@@ -23,7 +23,7 @@
               <% }) %>
               <div class="genres-container">
             <% row.genres.forEach(genre => { %>
-              <h3><%= genre %> </h3>
+              <p><%= genre %> </p>
             <% }) %>
           </div>
           <div class="edit-and-delete-container">

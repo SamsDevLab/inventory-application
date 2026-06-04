@@ -18,9 +18,15 @@
                 <img src="<%= row.img_url %>" alt="<%= row.game %> image">
               </div>
               <div class="details-container">
-                <% row.developers.forEach(developer => { %>
-                <h3><%= developer %></h3>
-              <% }) %>
+                <div class="developers-container">
+                  <% for (let i = 0; i < row.developers.length; i++) { %>
+                    <% if (i !== row.developers.length - 1) { %>
+                        <p><%= row.developers[i] %>, </p>
+                    <% } else { %>
+                        <p><%= row.developers[i] %></p>
+                    <% } %>
+                  <% } %>
+              </div>
               <div class="genres-container">
             <% row.genres.forEach(genre => { %>
               <p><%= genre %> </p>

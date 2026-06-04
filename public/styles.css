@@ -178,10 +178,15 @@ img {
   gap: 1rem;
 }
 
+.developers-container,
 .genres-container {
   display: flex;
   flex-wrap: wrap;
   gap: 0.2rem;
+}
+
+.developers-container {
+  gap: 0.3rem;
 }
 
 .genres-container p {

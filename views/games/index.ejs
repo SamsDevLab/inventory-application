@@ -26,19 +26,19 @@
                         <p><%= row.developers[i] %></p>
                     <% } %>
                   <% } %>
+                </div>
+                <div class="genres-container">
+                  <% row.genres.forEach(genre => { %>
+                  <p><%= genre %> </p>
+                  <% }) %>
+                </div>
               </div>
-              <div class="genres-container">
-            <% row.genres.forEach(genre => { %>
-              <p><%= genre %> </p>
-            <% }) %>
-          </div>
-          <div class="edit-and-delete-container">
-            <a href="/games/edit/<%= row.id %>">Edit</a>
-            <form action="/games/delete/<%= row.id %>" method="POST">
-              <button>Delete</button>
-            </form>
-          </div>
-          </div>
+              <div class="edit-and-delete-container">
+                  <a href="/games/edit/<%= row.id %>">Edit</a>
+                  <form action="/games/delete/<%= row.id %>" method="POST">
+                    <button>Delete</button>
+                  </form>
+              </div>
           </div>
           <% })%>
         </section>

@@ -1,3 +1,5 @@
+/* Kevin Powell Reset */
+
 *,
 *::before,
 *::after {
@@ -45,6 +47,20 @@ select {
   font: inherit;
 }
 
+@font-face {
+  font-family: "BebasNeue";
+  src:
+    url("./fonts/BebasNeue-Regular.woff2") format("woff2"),
+    url("./fonts/BebasNeue-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  src:
+    url("./fonts/Inter-Regular.woff2") format("woff2"),
+    url("./fonts/Inter-Regular.woff") format("woff");
+}
+
 /*******************/
 /* Header/Nav Bar */
 /*****************/
@@ -64,6 +80,7 @@ nav > ul {
   display: flex;
   gap: 1rem;
   list-style-type: none;
+  font-family: "Inter";
 }
 
 a {
@@ -76,11 +93,13 @@ a:hover {
 }
 
 h1 {
+  font-family: "BebasNeue";
   font-size: 2rem;
 }
 
 h2,
 h3 {
+  font-family: "Inter";
   color: #e8e9ed;
 }
 
@@ -117,6 +136,7 @@ main {
 }
 
 .view-header {
+  font-family: "Inter";
   display: flex;
   justify-content: space-between;
 }
@@ -152,6 +172,7 @@ img {
 .developer-card,
 .genre-card {
   display: flex;
+  font-family: "Inter";
   flex-direction: column;
   justify-content: start;
   gap: 2rem;

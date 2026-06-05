@@ -5,7 +5,7 @@
     <%- include("../partials/header") %>
     <main>
       <form
-        class="add-and-edit-form"
+        class="add-and-edit-form add-and-edit-developer"
         action="/developers/edit/<%= developer.id %>"
         method="POST"
       >
@@ -28,7 +28,10 @@
             value="<%= developer.img_url  %>"
           />
         </div>
-        <button type="text">Submit</button>
+        <div class="view-button-container">
+          <a href="/developers/">Back</a>
+          <button type="text">Submit</button>
+        </div>
       </form>
     </main>
     <%- include("../partials/footer") %>

@@ -5,7 +5,11 @@
   <body>
     <%- include("../partials/header") %>
     <main>
-      <form class="add-and-edit-form" action="/developers/add" method="POST">
+      <form
+        class="add-and-edit-form add-and-edit-developer"
+        action="/developers/add"
+        method="POST"
+      >
         <div class="title-container">
           <label for="developer">Add Developer</label>
           <input type="text" name="developer" id="developer" required />
@@ -14,7 +18,10 @@
           <label for="developer-image">Developer Image Link</label>
           <input type="url" name="developerImgUrl" id="developer-image" />
         </div>
-        <button type="text">Submit</button>
+        <div class="view-button-container">
+          <a href="/developers/">Back</a>
+          <button type="text">Submit</button>
+        </div>
       </form>
     </main>
     <%- include("../partials/footer") %>

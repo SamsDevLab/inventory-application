@@ -87,8 +87,31 @@ h3 {
 }
 
 .view-header {
+  font-family: "Inter";
+  min-height: 3rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.view-header h2 {
+  font-size: 1.25rem;
+  margin-left: 1rem;
+}
+
+.mock-button-container {
+  min-height: 100%;
+  min-width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mock-button-container a:hover {
+  background-color: #c89b3c;
+  color: #0b0d12;
+  padding: 0.4rem;
+  border-radius: 0.2rem;
 }
 
 .card-container {

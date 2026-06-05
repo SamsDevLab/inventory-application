@@ -12,11 +12,11 @@
         </section>
         <section class="card-container">
           <% developers.forEach(developer => { %> 
-            <div class="developer-card">
+            <div class="card">
               <h3>
                 <a href="/developers/filter-games/<%= developer.id %>"><%= developer.developer%></a>
               </h3>
-              <a href="/developers/filter-games/<%= developer.id %>">
+              <a href="/developers/filter-games/<%= developer.id %>" class="image-container">
                 <img src="<%= developer.img_url %>" alt="<%= developer.developer %> image">
               </a>
               <div class="edit-and-delete-container">

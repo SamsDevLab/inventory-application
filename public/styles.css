@@ -185,7 +185,7 @@ img {
   max-width: 37.5rem;
   padding: 2rem;
   border-radius: 0.5rem;
-  gap: 1rem;
+  gap: 2rem;
   background-color: #1b2336;
   border: 3px solid #2f3a56;
   color: #e8e9ed;
@@ -213,6 +213,7 @@ img {
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-top: auto;
 }
 
 /***********************/
@@ -311,9 +312,15 @@ main {
 /* Add Game View */
 
 .selection-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.selection-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
   align-items: center;
   color: #e8e9ed;
 }

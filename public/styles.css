@@ -173,11 +173,14 @@ img {
   cursor: pointer;
 }
 
-form {
+.add-and-edit-form {
   display: flex;
   flex-direction: column;
+  padding: 1rem;
+  border-radius: 0.5rem;
   gap: 1rem;
   color: #e8e9ed;
+  background-color: #2f3a56;
 }
 
 /***********************/

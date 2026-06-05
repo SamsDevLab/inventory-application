@@ -6,7 +6,7 @@
     <%- include("../partials/header") %>
     <main>
       <form class="add-and-edit-form" action="/games/edit/<%= gameData.gameTitle[0].id %>" method="POST">
-        <div class="game-title-container">          
+        <div class="title-container">          
           <input type="hidden" name="gameId" value="<%= gameData.gameTitle[0].id%>">
           <label for="<%= gameData.gameTitle[0].id %>">Game Title</label>
           <input

@@ -179,8 +179,29 @@ img {
   padding: 1rem;
   border-radius: 0.5rem;
   gap: 1rem;
+  background-color: #1b2336;
+  border: 3px solid #2f3a56;
   color: #e8e9ed;
-  background-color: #2f3a56;
+  font-family: "Inter";
+}
+
+.add-and-edit-form input {
+  padding-left: 2px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  color: #e8e9ed;
+  gap: 0.2rem;
+}
+
+.image-link-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  gap: 0.2rem;
 }
 
 /***********************/
@@ -278,14 +299,6 @@ main {
 
 /* Add Game View */
 
-.game-title-container,
-.image-container {
-  display: flex;
-  flex-direction: column;
-  max-width: 50%;
-  color: #e8e9ed;
-}
-
 .selection-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -301,11 +314,6 @@ main {
 /*****************/
 
 /* Add Developer View */
-.dev-title-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
 
 /* Edit Developer View */
 
@@ -337,12 +345,6 @@ main {
 }
 
 /* Add Genre View */
-
-.genre-title-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
 
 /* Footer */
 footer {

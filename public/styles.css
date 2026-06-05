@@ -141,17 +141,20 @@ img {
   gap: 1rem;
 }
 
-.edit-and-delete-container a {
+.edit-and-delete-container a,
+.view-button-container a {
   background-color: #c89b3c;
   color: #1b2336;
   min-width: max-content;
 }
 
 .edit-and-delete-container a,
-.edit-and-delete-container button {
+.edit-and-delete-container button,
+.view-button-container a,
+.view-button-container button {
   padding: 0.5rem;
   border-radius: 0.2rem;
-  width: 4rem;
+  width: 5rem;
   height: 2rem;
   border: none;
   display: flex;
@@ -159,16 +162,19 @@ img {
   align-items: center;
 }
 
-.edit-and-delete-container button {
+.edit-and-delete-container button,
+.view-button-container button {
   background-color: #7a2433;
   color: #f5f5f5;
 }
 
-.edit-and-delete-container a:hover {
+.edit-and-delete-container a:hover,
+.view-button-container a:hover {
   background-color: #d8ae52;
 }
 
-.edit-and-delete-container button:hover {
+.edit-and-delete-container button:hover,
+.view-button-container button:hover {
   background-color: #963042;
   cursor: pointer;
 }
@@ -176,7 +182,8 @@ img {
 .add-and-edit-form {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  max-width: 37.5rem;
+  padding: 2rem;
   border-radius: 0.5rem;
   gap: 1rem;
   background-color: #1b2336;
@@ -192,7 +199,6 @@ img {
 .title-container {
   display: flex;
   flex-direction: column;
-  max-width: 50%;
   color: #e8e9ed;
   gap: 0.2rem;
 }
@@ -200,8 +206,13 @@ img {
 .image-link-container {
   display: flex;
   flex-direction: column;
-  max-width: 50%;
   gap: 0.2rem;
+}
+
+.view-button-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 /***********************/

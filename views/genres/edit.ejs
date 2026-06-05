@@ -4,11 +4,7 @@
   <body>
     <%- include("../partials/header") %>
     <main>
-      <form
-        class="genre-form"
-        action="/genres/edit/<%= genre.id %>"
-        method="POST"
-      >
+      <form action="/genres/edit/<%= genre.id %>" method="POST">
         <div class="genre-title-container">
           <label for="<%= genre.id %>">Edit Genre</label>
           <input

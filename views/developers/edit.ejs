@@ -4,11 +4,7 @@
   <body>
     <%- include("../partials/header") %>
     <main>
-      <form
-        class="developer-form"
-        action="/developers/edit/<%= developer.id %>"
-        method="POST"
-      >
+      <form action="/developers/edit/<%= developer.id %>" method="POST">
         <div class="dev-title-container">
           <label for="<%= developer.id %>">Edit Developer</label>
           <input

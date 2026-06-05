@@ -4,12 +4,19 @@
   <body>
     <%- include("../partials/header") %>
     <main>
-      <form class="add-and-edit-form" action="/genres/add" method="POST">
+      <form
+        class="add-and-edit-form add-and-edit-genre"
+        action="/genres/add"
+        method="POST"
+      >
         <div class="title-container">
           <label for="genre">Add Genre</label>
           <input type="text" name="genre" id="genre" required />
         </div>
-        <button type="text">Submit</button>
+        <div class="view-button-container">
+          <a href="/genres/">Back</a>
+          <button type="text">Submit</button>
+        </div>
       </form>
     </main>
     <%- include("../partials/footer") %>

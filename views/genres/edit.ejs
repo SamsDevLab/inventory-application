@@ -5,7 +5,7 @@
     <%- include("../partials/header") %>
     <main>
       <form
-        class="add-and-edit-form"
+        class="add-and-edit-form add-and-edit-genre"
         action="/genres/edit/<%= genre.id %>"
         method="POST"
       >
@@ -19,7 +19,10 @@
             required
           />
         </div>
-        <button type="text">Submit</button>
+        <div class="view-button-container">
+          <a href="/genres/">Back</a>
+          <button type="text">Submit</button>
+        </div>
       </form>
     </main>
     <%- include("../partials/footer") %>

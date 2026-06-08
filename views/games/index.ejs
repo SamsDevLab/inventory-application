@@ -12,9 +12,12 @@
             <a href="/games/add">Add Game</a>
           </div>
         </section>
-        <section class="card-container">
-          <% rows.forEach(row => { %>
-          <div class="card">
+        <% if (rows.length === 0 ) { %>
+          <p> No games available in this category</p>
+        <% } else { %>    
+          <section class="card-container">
+            <% rows.forEach(row => { %>
+            <div class="card">
               <h3><%= row.game %></h3>
               <img src="<%= row.img_url %>" alt="<%= row.game %> image">        
               <div class="details-container">
@@ -39,9 +42,10 @@
                     <button>Delete</button>
                   </form>
               </div>
-          </div>
-          <% })%>
-        </section>
+            </div>
+            <% })%>
+          </section>
+        <% } %>
       </div>
     </main>
     <%- include("../partials/footer") %>

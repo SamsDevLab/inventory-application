@@ -290,6 +290,11 @@ main {
   min-width: 85%;
 }
 
+.main-container p {
+  font-family: "Inter";
+  color: #e8e9ed;
+}
+
 /*****************/
 /*** Homepage ***/
 /***************/

@@ -248,6 +248,8 @@ img {
 
 header {
   padding: 1.5rem;
+  min-height: 8rem;
+  display: flex;
 }
 
 nav {
@@ -257,11 +259,56 @@ nav {
   align-items: center;
 }
 
+.main-header-container {
+  display: flex;
+  justify-content: center;
+  min-width: 22rem;
+}
+
+.main-header-container a {
+  min-width: 22rem;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.25rem;
+  font-family: "BebasNeue";
+  font-size: 2rem;
+}
+
+.main-header-container a:hover {
+  background-color: #c89b3c;
+  color: #0b0d12;
+  border-radius: 0.2rem;
+}
+
 nav > ul {
   display: flex;
   gap: 1rem;
   list-style-type: none;
   font-family: "Inter";
+}
+
+nav li {
+  min-width: 6rem;
+  max-width: 6rem;
+  min-height: 1.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+li > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 6rem;
+  max-width: 6rem;
+  min-height: 1.75rem;
+}
+
+li a:hover {
+  background-color: #c89b3c;
+  color: #0b0d12;
+  border-radius: 0.2rem;
 }
 
 /******************/

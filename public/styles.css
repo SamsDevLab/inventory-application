@@ -92,11 +92,11 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 100%;
 }
 
 .view-header h2 {
   font-size: 1.25rem;
-  /* margin-left: 1rem; */
 }
 
 .mock-button-container {
@@ -115,7 +115,7 @@ h3 {
 }
 
 .card-container {
-  min-width: 85%;
+  min-width: 100%;
   display: grid;
   justify-content: center;
   align-self: center;
@@ -284,10 +284,10 @@ main {
 
 .main-container {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   gap: 1.5rem;
-  max-width: 80%;
+  max-width: 85%;
+  min-width: 85%;
 }
 
 /*****************/

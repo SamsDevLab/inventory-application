@@ -135,8 +135,8 @@ h3 {
 }
 
 .image-container {
-  min-width: 80%;
-  min-height: 6rem;
+  min-width: 12.25rem;
+  min-height: 10.25rem;
   display: flex;
   justify-content: center;
   align-items: center;

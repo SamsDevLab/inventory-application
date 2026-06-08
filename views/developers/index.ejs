@@ -16,11 +16,13 @@
           <% developers.forEach(developer => { %> 
             <div class="card">
               <h3>
-                <a href="/developers/filter-games/<%= developer.id %>"><%= developer.developer%></a>
+                <a href="/developers/filter-games/<%= developer.id %>" class="card-header-container"><%= developer.developer%></a>
               </h3>
-              <a href="/developers/filter-games/<%= developer.id %>" class="image-container">
-                <img src="<%= developer.img_url %>" alt="<%= developer.developer %> image">
-              </a>
+              <div class="image-container">
+                <a href="/developers/filter-games/<%= developer.id %>" >
+                  <img src="<%= developer.img_url %>" alt="<%= developer.developer %> image">
+                </a>
+              </div>
               <div class="edit-and-delete-container">
                 <a href="/developers/edit/<%= developer.id %>">Edit</a>
                 <form action="/developers/delete/<%= developer.id %>" method="POST">

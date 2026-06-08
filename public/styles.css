@@ -151,7 +151,7 @@ h3 {
   border-radius: 0.2rem;
 }
 
-img {
+.card img {
   max-height: 10rem;
   min-height: 10rem;
   max-width: 12rem;
@@ -345,6 +345,15 @@ main {
 /*****************/
 /*** Homepage ***/
 /***************/
+
+.homepage-container {
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-direction: column;
+}
 
 .featured-section,
 .recently-added-section {

@@ -498,6 +498,10 @@ footer {
   .card-container {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  nav {
+    flex-direction: column;
+  }
 }
 
 @media (480px <= width <= 768px) {
@@ -516,7 +520,7 @@ footer {
   }
 }
 
-@media (320px <= width <= 480) {
+@media (320px <= width <= 480px) {
   .card-container {
     grid-template-columns: repeat(1, 1fr);
     margin: 0 1rem 0 1rem;

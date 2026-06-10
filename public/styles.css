@@ -460,6 +460,7 @@ main {
 
 .card-header-container:hover {
   background-color: #c89b3c;
+  color: #0b0d12;
   border-radius: 0.2rem;
   cursor: pointer;
 }

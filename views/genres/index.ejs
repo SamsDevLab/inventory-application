@@ -15,9 +15,11 @@
       <section class="card-container">
         <% genres.forEach(genre => { %>
           <div class="card genre-card">
-            <a href="/genres/filter-games/<%= genre.id %>" class="card-header-container">
-              <h3><%= genre.genre %></h3>
-            </a>
+            <h3>
+              <a href="/genres/filter-games/<%= genre.id %>" class="card-header-container">
+                <%= genre.genre %>
+              </a>
+            </h3>
             <div class="image-container">
               <a href="/genres/filter-games/<%= genre.id %>">
                 <svg width="10rem" height="8rem" viewBox="0 0 24 24" fill="#2f3a56" xmlns="http://www.w3.  org/2000/svg">

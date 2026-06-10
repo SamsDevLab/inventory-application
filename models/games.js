@@ -5,22 +5,58 @@ const developerModel = require("../models/developers");
 // ********************** //
 // **** Render Games **** //
 // ********************** //
-
-async function queryAllGamesWithDetails() {
+async function queryAllGames() {
   const result = await pool.query(
-    `
-    SELECT  games.id, game, games.img_url, ARRAY_AGG(DISTINCT developer) AS developers, ARRAY_AGG(DISTINCT genre) AS genres
-      FROM developers
-        JOIN game_developers ON game_developers.developer_id = developers.id
-        JOIN games ON game_developers.game_id = games.id
-        JOIN game_genres ON games.id = game_genres.game_id
-        JOIN genres ON game_genres.genre_id = genres.id
-          GROUP BY games.id
-          ORDER BY game
+    `SELECT * FROM games
+      ORDER BY game
     `,
   );
 
   return result.rows;
+}
+
+async function queryAllGameDevelopers() {
+  const result = await pool.query(
+    `SELECT game_id, developer
+      FROM games
+        JOIN game_developers ON game_developers.game_id = games.id
+        JOIN developers ON game_developers.developer_id = developers.id
+        ORDER BY developer
+    `,
+  );
+
+  return result.rows;
+}
+
+async function queryAllGameGenres() {
+  const result = await pool.query(
+    `SELECT game_id, genre
+      FROM games
+        JOIN game_genres ON game_genres.game_id = games.id
+        JOIN genres ON game_genres.genre_id = genres.id
+        ORDER BY genre
+    `,
+  );
+
+  return result.rows;
+}
+
+async function queryAllGamesWithDetails() {
+  const games = await queryAllGames();
+  const developersArr = await queryAllGameDevelopers();
+  const genresArr = await queryAllGameGenres();
+
+  const mergedGamesArr = games.map((game) => ({
+    ...game,
+    developers: developersArr
+      .filter((developer) => developer.game_id === game.id)
+      .map((developer) => developer.developer),
+    genres: genresArr
+      .filter((genre) => genre.game_id === game.id)
+      .map((genre) => genre.genre),
+  }));
+
+  return mergedGamesArr;
 }
 
 // ******************* //

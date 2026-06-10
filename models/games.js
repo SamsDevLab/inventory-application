@@ -119,12 +119,16 @@ async function addNewGameWithDetails(
   await addGameToGamesTable(newGameTitle, gameImgUrl);
   const gameId = await queryGameId(newGameTitle);
 
-  for (const developerId of developerIds) {
-    await addToGameDevelopersTable(gameId, developerId);
+  if (developerIds !== undefined) {
+    for (const developerId of developerIds) {
+      await addToGameDevelopersTable(gameId, developerId);
+    }
   }
 
-  for (const genreId of genreIds) {
-    await addToGameGenresTable(gameId, genreId);
+  if (genreIds !== undefined) {
+    for (const genreId of genreIds) {
+      await addToGameGenresTable(gameId, genreId);
+    }
   }
 }
 

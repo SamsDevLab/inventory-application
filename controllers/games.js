@@ -23,8 +23,8 @@ async function renderAddGameForm(req, res) {
 async function addGameToDatabase(req, res) {
   const newGameTitle = req.body.game;
   const gameImgUrl = req.body.gameImgUrl;
-  const developerIds = req.body.developers;
-  const genreIds = req.body.genres;
+  let developerIds = req.body.developers;
+  let genreIds = req.body.genres;
 
   await gamesModel.addNewGameWithDetails(
     newGameTitle,
